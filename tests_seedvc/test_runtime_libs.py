@@ -253,5 +253,17 @@ class WindowedJobRoutingTest(unittest.TestCase):
             app_seedvc._FetchRuntimeEntry(entry, progress=progress_cb)
         self.assertEqual(calls, [(entry, None, progress_cb)])
 
+    def test_windowed_runtime_job_with_none_progress_leaves_runtime_dir_none(self):
+        """The non-windowed path job.run(None) must stay unaffected by the callback-slot fix."""
+        import app_seedvc
+        from unittest import mock
+        entry = {"member": "torch/lib/c10.dll"}
+        calls: list[tuple] = []
+        def fake(entry_arg, runtime_dir=None, progress=None):
+            calls.append((entry_arg, runtime_dir, progress))
+        with mock.patch.object(runtime_libs, "FetchMember", fake):
+            app_seedvc._FetchRuntimeEntry(entry, None)
+        self.assertEqual(calls, [(entry, None, None)])
+
 if __name__ == "__main__":
     unittest.main()
