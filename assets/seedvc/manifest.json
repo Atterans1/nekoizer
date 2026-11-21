@@ -1,0 +1,53 @@
+{
+ "seedvc_commit": "51383efd921027683c89e5348211d93ff12ac2a8",
+ "items": [
+  {
+   "url": "https://huggingface.co/Plachta/Seed-VC/resolve/main/DiT_uvit_tat_xlsr_ema.pth",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/DiT_uvit_tat_xlsr_ema.pth",
+   "size": 142112203,
+   "sha": "c853ea578b409f625f961bcb15d5cff1f8ef9a75f3209ec21d9b7c73ab422e88"
+  },
+  {
+   "url": "https://huggingface.co/Plachta/Seed-VC/resolve/main/config_dit_mel_seed_uvit_xlsr_tiny.yml",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/config_dit_mel_seed_uvit_xlsr_tiny.yml",
+   "size": 2100,
+   "sha": null
+  },
+  {
+   "url": "https://huggingface.co/funasr/campplus/resolve/main/campplus_cn_common.bin",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/campplus_cn_common.bin",
+   "size": 28036335,
+   "sha": "3388cf5fd3493c9ac9c69851d8e7a8badcfb4f3dc631020c4961371646d5ada8"
+  },
+  {
+   "url": "https://huggingface.co/FunAudioLLM/CosyVoice-300M/resolve/main/hift.pt",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/hift.pt",
+   "size": 81896716,
+   "sha": "91e679b6ca1eff71187ffb4f3ab0444935594cdcc20a9bd12afad111ef8d6012"
+  },
+  {
+   "url": "https://huggingface.co/facebook/wav2vec2-xls-r-300m/resolve/main/config.json",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/wav2vec2-xls-r-300m/config.json",
+   "size": 1568,
+   "sha": null
+  },
+  {
+   "url": "https://huggingface.co/facebook/wav2vec2-xls-r-300m/resolve/main/preprocessor_config.json",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/wav2vec2-xls-r-300m/preprocessor_config.json",
+   "size": 212,
+   "sha": null
+  },
+  {
+   "url": "https://huggingface.co/facebook/wav2vec2-xls-r-300m/resolve/main/pytorch_model.bin",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/wav2vec2-xls-r-300m/pytorch_model.bin",
+   "size": 1269737156,
+   "sha": "d5e490574712ad0a6736923b9ed11d4cd51c78609c36205f704fc4e87b11d2e0"
+  },
+  {
+   "url": "https://github.com/Plachtaa/seed-vc/archive/51383efd921027683c89e5348211d93ff12ac2a8.zip",
+   "dest": "C:/Users/jeffr/s2s-voicechanger/assets/seedvc/seed-vc-51383efd921027683c89e5348211d93ff12ac2a8.zip",
+   "size": null,
+   "sha": null
+  }
+ ]
+}

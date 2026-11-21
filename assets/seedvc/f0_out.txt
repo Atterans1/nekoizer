@@ -1,0 +1,1 @@
+{"top_level": ["net"], "modules": ["cfm", "style_encoder", "vq", "length_regulator"], "n_tensors": 191, "f0_related_keys": [], "n_f0_keys": 0}

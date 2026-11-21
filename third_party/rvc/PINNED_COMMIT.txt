@@ -1,0 +1,26 @@
+Source          RVC-Project/Retrieval-based-Voice-Conversion-WebUI (MIT License, see LICENSE in this folder)
+Repository      https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI
+Commit          81eed5e8f68b6bed1789f682fe78cdd324495afc (committed 2026-08-04T07:47:05Z)
+Archive         https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/archive/81eed5e8f68b6bed1789f682fe78cdd324495afc.zip
+Archive SHA256  c0427564fbeb584d1a4805a5e71b5897132a41b9029a0fa9f417497a6df13e43 (821646 bytes)
+License check   the archive LICENSE starts with 'MIT License' and the GitHub license API reports MIT for the repository
+
+Files (path in the archive, file here, SHA256 and size of the original)
+  infer/module/models.py -> models.py  769615b8dbed4775c8083881663a79c0e5ec0b662dd5f0c0a1bc3ccdd9827e99  35798 bytes
+  infer/module/modules.py -> modules.py  b1aa77b0921468a61492fa89ed1f1212cd22fee3caa551befe44d8ab359fd2f1  17775 bytes
+  infer/module/attentions.py -> attentions.py  8820e6047353d99344fc73fbb6c69d85e4f61066fc498982cc895e9577d4519f  15994 bytes
+  infer/module/commons.py -> commons.py  132a907eff444907861e63684c04c88ae631d03707470858f7c53f857b0cc5c8  5463 bytes
+  infer/module/transforms.py -> transforms.py  fb0d3320adf32ca0eaa44dd56e8922927f77ec3dd45c775e10c3da1704072c6a  7458 bytes
+  infer/rmvpe.py -> rmvpe.py  074171aec63e4b68f04d8691c62af50a1d99b9bc6dc56c4d6749fad4ba64853a  24108 bytes
+  LICENSE -> LICENSE  bec61ed1eb9a3748644ddbc50303aa6978e14eeaba46822e59a006c722b52585  1142 bytes
+
+Local changes (everything else is byte-identical to the original)
+  models.py      the two 'from infer.module...' imports became relative imports
+  modules.py     the three 'from infer.module...' imports became relative imports
+  attentions.py  the two 'from infer.module...' imports became relative imports
+  rmvpe.py       keeps only the network classes (BiGRU ... E2E) and MelSpectrogram. Removed: STFT and the DirectML branch of
+                 MelSpectrogram.forward, the RMVPE class (it loads its weights with a plain torch.load and imports tools.cuda_graph
+                 and configs.config), the __main__ block and the imports only those used
+                 Line endings of this file were normalised from CRLF/LF mix to LF.
+  __init__.py    added (this folder is imported as third_party.rvc)
+Upstream also contains training and discriminator code in models.py; it is kept as it is and never called.

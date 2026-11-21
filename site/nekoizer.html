@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nekoizer: a cute real-time voice changer for Windows</title>
+<meta name="description" content="Free real-time voice changer for Windows. Load a clip or an RVC voice, talk, and sound like someone else in Discord, games and calls. Runs on your own PC.">
+<meta name="theme-color" content="#FF8FC7">
+<link rel="canonical" href="https://atterans.shop/nekoizer">
+<link rel="icon" href="art/mimi_idle.png" type="image/png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Atterans">
+<meta property="og:title" content="Nekoizer: a cute real-time voice changer for Windows"><meta property="og:description" content="Free real-time voice changer for Windows. Load a clip or an RVC voice, talk, and sound like someone else in Discord, games and calls. Runs on your own PC.">
+<meta property="og:image" content="https://atterans.shop/art/og_banner.png"><meta property="og:url" content="https://atterans.shop/nekoizer">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="logo" href="index.html"><img src="art/mimi_idle.png" alt="" width="56" height="56"><span>Atterans</span></a>
+  <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="nekoizer.html" aria-current="page">Nekoizer</a>
+      <a href="fretwork.html">Fretwork</a>
+      <a href="namrig.html">Namrig</a>
+      <a href="attmusic.html">attmusic</a>
+      <a href="support.html">Support</a>
+  </nav>
+</header>
+<main id="main">
+
+
+  <section class="hero card">
+    <div>
+      <h1>Nekoizer</h1>
+      <p class="lead">Talk as someone else, live. Nekoizer turns your microphone into a different voice in real time, for Discord, games, streams and calls. It runs on your own graphics card, so your voice stays on your PC.</p>
+      <p class="cta"><a class="btn big " data-download href="downloads/Nekoizer-Setup-1.0.0.exe">Download for Windows <span>v<span data-version>1.0.0</span> · free · small installer</span></a><a class="btn alt" href="guide.html">How it works</a></p>
+      <p class="fine">Free for Windows 10/11 with an NVIDIA GPU. The installer is unsigned, so SmartScreen may warn you: choose More info, then Run anyway. <a href="download.html">Details</a> · <a href="faq.html">FAQ</a></p>
+    </div>
+    <img class="scene" src="art/hero_scene.png" alt="Pixel art of Mimi the mascot singing on a stage" width="512" height="512">
+  </section>
+  <section class="features" aria-labelledby="h-feat">
+    <h2 id="h-feat">What it does</h2>
+    <article class="card tilt"><img src="art/icon_headphones.png" alt="" width="64" height="64"><h3>Clips and RVC voices</h3><p>Drop in a wav, mp3, flac or ogg clip, or an RVC voice model (.pth or .zip), in the same bank of voice slots. Switch with Ctrl+Alt+1 to 4.</p></article>
+    <article class="card tilt"><img src="art/icon_waveform.png" alt="" width="64" height="64"><h3>Tune it live</h3><p>Pitch, tone, timbre blend, emotion and presets while you speak, with live level and latency readouts.</p></article>
+    <article class="card tilt"><img src="art/icon_shield.png" alt="" width="64" height="64"><h3>Private by design</h3><p>Conversion happens on your PC. The app goes online only to download its models and to import links you give it.</p></article>
+    <article class="card tilt"><img src="art/icon_wand.png" alt="" width="64" height="64"><h3>Bring your own voices</h3><p>Browse community RVC models at voice-models.com or use your own recordings. Only use voices you have the right to use.</p></article>
+  </section>
+  <section class="card" aria-labelledby="h-ba">
+    <h2 id="h-ba">Before and after</h2>
+    <p>Real screenshots of the app running on my PC, taken on 19 Nov 2026, and spectrograms drawn from a real conversion.</p>
+    <div class="ba">
+      <figure><div class="shot-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot: Nekoizer window with all four voice slots empty"><img src="shots/nekoizer-before.png" alt="Nekoizer window with all four voice slots empty" width="1280" height="2049" loading="lazy"></div><figcaption><strong>Before:</strong> a fresh start. All four voice slots are empty.</figcaption></figure>
+      <figure><div class="shot-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot: Nekoizer window with two voices loaded into slots"><img src="shots/nekoizer-after.png" alt="Nekoizer window with two voices loaded into slots" width="1280" height="2049" loading="lazy"></div><figcaption><strong>After:</strong> two voices loaded (a clip imported from a link into slot 1 and another into slot 2), ready to switch with the hotkeys.</figcaption></figure>
+    </div>
+    <figure><img src="shots/nekoizer-spectrogram.png" alt="Two spectrograms: the microphone input above and the converted voice below, same words" width="1000" height="446" loading="lazy"><figcaption><strong>The voice itself:</strong> the same spoken words as a spectrogram, input on top and converted voice below. The audio is not published here. Only my own test clips are used.</figcaption></figure>
+    <p class="fine">Honest limits: on my 4 GB laptop graphics card the clip voices run in real time at the default settings, and RVC voices were right at the limit (about 0.9 to 1.15 times the block length), so a larger block size can help.</p>
+  </section>
+  <section class="card" aria-labelledby="h-phone">
+    <h2 id="h-phone">Works in a small window too</h2>
+    <figure class="phone"><div class="shot-scroll" tabindex="0" role="region" aria-label="Scrollable screenshot: Nekoizer interface at phone width"><img src="shots/nekoizer-phone.png" alt="Nekoizer interface at phone width" width="390" height="4754" loading="lazy"></div><figcaption>The same controls at 390 px wide.</figcaption></figure>
+  </section>
+  <section class="love card"><img src="art/mimi_success.png" alt="Mimi cheering" width="96" height="96"><div><h2>Free, with tips welcome</h2><p>No ads, no accounts. A coffee helps pay for the GPU time behind the testing.</p><p><a class="btn" data-donate href="https://ko-fi.com/tombstoneint" rel="noopener">Donate on Ko-fi</a></p></div></section>
+</main>
+<footer>
+  <img src="art/mimi_sleeping.png" alt="" width="48" height="48">
+  <p>Made with sparkles. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a data-donate href="https://ko-fi.com/tombstoneint" rel="noopener">Ko-fi</a></p>
+  <p class="fine">Not affiliated with Discord, VB-Audio, Hugging Face, Image-Line or Ko-fi. Only use voices you have the right to use.</p>
+</footer>
+<script src="config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+ "files": {
+  "assets/seedvc/config_dit_mel_seed_uvit_xlsr_tiny.yml": {
+   "sha256": "e4f152f9c7b8924f82c9661cd28737204dd93368871a6feaec36437cb7138e74",
+   "size": 2100
+  },
+  "assets/seedvc/wav2vec2-xls-r-300m/config.json": {
+   "sha256": "0bffa0d0e98153e883b828d86491f3c6062cb563dc9d7a9cfd1790da30c286ac",
+   "size": 1568
+  },
+  "assets/seedvc/wav2vec2-xls-r-300m/preprocessor_config.json": {
+   "sha256": "a2254a5b58f72cd4de3632f8eee64f3f098b7c1402128d2f419e7d00ae13e335",
+   "size": 212
+  },
+  "installer/torch_lib_manifest.json": {
+   "sha256": "8c90a6db77f16fac761bb7ae2a0ee26df27632638349b8c6270d78cb7bc12dd7",
+   "size": 16129
+  },
+  "third_party/seed-vc/LICENSE": {
+   "sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b",
+   "size": 35148
+  },
+  "third_party/seed-vc/configs/hifigan.yml": {
+   "sha256": "c92c1ab95901f93c531d569e81bde5d0c8a44249c8b7751ace9534ddec25e44a",
+   "size": 646
+  }
+ },
+ "models": [
+  {
+   "name": "Seed-VC DiT (xlsr-tiny)",
+   "relpath": "DiT_uvit_tat_xlsr_ema.pth",
+   "sha256": "c853ea578b409f625f961bcb15d5cff1f8ef9a75f3209ec21d9b7c73ab422e88",
+   "size": 142112203,
+   "url": "https://huggingface.co/Plachta/Seed-VC/resolve/257283f9f41585055e8f858fba4fd044e5caed6e/DiT_uvit_tat_xlsr_ema.pth"
+  },
+  {
+   "name": "CAMPPlus speaker encoder",
+   "relpath": "campplus_cn_common.bin",
+   "sha256": "3388cf5fd3493c9ac9c69851d8e7a8badcfb4f3dc631020c4961371646d5ada8",
+   "size": 28036335,
+   "url": "https://huggingface.co/funasr/campplus/resolve/e4b6ede7ce16997aff4ae69fbca1f0175e2afede/campplus_cn_common.bin"
+  },
+  {
+   "name": "HiFT vocoder",
+   "relpath": "hift.pt",
+   "sha256": "91e679b6ca1eff71187ffb4f3ab0444935594cdcc20a9bd12afad111ef8d6012",
+   "size": 81896716,
+   "url": "https://huggingface.co/FunAudioLLM/CosyVoice-300M/resolve/24c40509c3c5ea6fe06b5f8790ff99e3714a6bee/hift.pt"
+  },
+  {
+   "name": "XLSR content encoder",
+   "relpath": "wav2vec2-xls-r-300m/pytorch_model.bin",
+   "sha256": "d5e490574712ad0a6736923b9ed11d4cd51c78609c36205f704fc4e87b11d2e0",
+   "size": 1269737156,
+   "url": "https://huggingface.co/facebook/wav2vec2-xls-r-300m/resolve/1a640f32ac3e39899438a2931f9924c02f080a54/pytorch_model.bin"
+  }
+ ],
+ "seedvc_commit": "51383efd921027683c89e5348211d93ff12ac2a8",
+ "torch_lib": {
+  "members": 58,
+  "sha256": "8c90a6db77f16fac761bb7ae2a0ee26df27632638349b8c6270d78cb7bc12dd7",
+  "wheel_size": 2602771598,
+  "wheel_url": "https://download.pytorch.org/whl/cu126/torch-2.14.0%2Bcu126-cp312-cp312-win_amd64.whl"
+ },
+ "version": "1.0.0"
+}

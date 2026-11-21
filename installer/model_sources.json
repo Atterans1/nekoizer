@@ -1,0 +1,46 @@
+{
+ "seedvc_commit": "51383efd921027683c89e5348211d93ff12ac2a8",
+ "models": [
+  {
+   "name": "Seed-VC DiT (xlsr-tiny)",
+   "relpath": "DiT_uvit_tat_xlsr_ema.pth",
+   "url": "https://huggingface.co/Plachta/Seed-VC/resolve/257283f9f41585055e8f858fba4fd044e5caed6e/DiT_uvit_tat_xlsr_ema.pth",
+   "size": 142112203,
+   "sha256": "c853ea578b409f625f961bcb15d5cff1f8ef9a75f3209ec21d9b7c73ab422e88"
+  },
+  {
+   "name": "CAMPPlus speaker encoder",
+   "relpath": "campplus_cn_common.bin",
+   "url": "https://huggingface.co/funasr/campplus/resolve/e4b6ede7ce16997aff4ae69fbca1f0175e2afede/campplus_cn_common.bin",
+   "size": 28036335,
+   "sha256": "3388cf5fd3493c9ac9c69851d8e7a8badcfb4f3dc631020c4961371646d5ada8"
+  },
+  {
+   "name": "HiFT vocoder",
+   "relpath": "hift.pt",
+   "url": "https://huggingface.co/FunAudioLLM/CosyVoice-300M/resolve/24c40509c3c5ea6fe06b5f8790ff99e3714a6bee/hift.pt",
+   "size": 81896716,
+   "sha256": "91e679b6ca1eff71187ffb4f3ab0444935594cdcc20a9bd12afad111ef8d6012"
+  },
+  {
+   "name": "XLSR content encoder",
+   "relpath": "wav2vec2-xls-r-300m/pytorch_model.bin",
+   "url": "https://huggingface.co/facebook/wav2vec2-xls-r-300m/resolve/1a640f32ac3e39899438a2931f9924c02f080a54/pytorch_model.bin",
+   "size": 1269737156,
+   "sha256": "d5e490574712ad0a6736923b9ed11d4cd51c78609c36205f704fc4e87b11d2e0"
+  }
+ ],
+ "shipped": [
+  {"src": "installer/torch_lib_manifest.json", "dest": "installer"},
+  {"src": "assets/seedvc/config_dit_mel_seed_uvit_xlsr_tiny.yml", "dest": "assets/seedvc"},
+  {"src": "assets/seedvc/wav2vec2-xls-r-300m/config.json", "dest": "assets/seedvc/wav2vec2-xls-r-300m"},
+  {"src": "assets/seedvc/wav2vec2-xls-r-300m/preprocessor_config.json", "dest": "assets/seedvc/wav2vec2-xls-r-300m"},
+  {"src": "third_party/seed-vc/configs/hifigan.yml", "dest": "third_party/seed-vc/configs"},
+  {"src": "third_party/seed-vc/LICENSE", "dest": "third_party/seed-vc"}
+ ],
+ "rvc_models": [
+  {"name": "RVC HuBERT config", "relpath": "hubert_base/config.json", "url": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/e6d0c1a17da07c33557852f9dfa2bd44cc75737d/hubert_base/config.json", "size": 1492, "sha256": "0346950779dfb7f9316fa74ed846e2b8a22a08eedfdc5387b73f327cb1a4a7cf"},
+  {"name": "RVC HuBERT content model", "relpath": "hubert_base/pytorch_model.bin", "url": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/e6d0c1a17da07c33557852f9dfa2bd44cc75737d/hubert_base/pytorch_model.bin", "size": 189206711, "sha256": "cc8c20f4b90a520757260197a3ff2505705a7adbd20ad9eeaa4e1a9b38442ef5"},
+  {"name": "RVC RMVPE pitch model", "relpath": "rmvpe.pt", "url": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/e6d0c1a17da07c33557852f9dfa2bd44cc75737d/rmvpe.pt", "size": 181184272, "sha256": "6d62215f4306e3ca278246188607209f09af3dc77ed4232efdd069798c4ec193"}
+ ]
+}

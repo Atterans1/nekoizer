@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Small online setup: the MSI is downloaded from BaseUrl when the user runs it, and Burn checks it against the hash recorded here. Per-user, no elevation. -->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
+  <Bundle Name="Nekoizer" Version="$(Version)" Manufacturer="Nekoizer" UpgradeCode="B2D3F4A1-7C55-4E0B-8A19-6D0C9E3B5F72"
+          IconSourceFile="$(InstallerDir)\mimi.ico" AboutUrl="https://ko-fi.com/tombstoneint">
+    <BootstrapperApplication>
+      <bal:WixStandardBootstrapperApplication Theme="hyperlinkLicense" LicenseUrl="" />
+    </BootstrapperApplication>
+    <Chain>
+      <MsiPackage Id="NekoizerApp" Compressed="no" DownloadUrl="$(BaseUrl)/{2}" SourceFile="$(MsiDir)\Nekoizer-$(Version).msi" Visible="no" />
+    </Chain>
+  </Bundle>
+</Wix>

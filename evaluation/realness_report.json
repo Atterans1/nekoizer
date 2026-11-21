@@ -1,0 +1,69 @@
+{
+ "generated": "2026-11-17T04:31:57.599Z",
+ "rule": "pass only if a judge flags zero clips as not sounding like a real person of that voice",
+ "judge_capability": "No audio-capable judge is available in this session. The judge tool takes text, JSON or images only; the earlier evaluation note says its LLM judge cannot hear audio. A judge that cannot hear cannot give a valid verdict, so none was run.",
+ "per_voice": [
+  {
+   "voice": "calm_storyteller",
+   "file": "presets/calm_storyteller.wav",
+   "sample_rate": 24000,
+   "duration_s": 6.5,
+   "clips_tested": 0,
+   "clips_flagged": null,
+   "emotional_range_tested": false,
+   "vocal_range_tested": false,
+   "passed": false,
+   "status": "UNTESTED: no listener available; this is not a pass"
+  },
+  {
+   "voice": "0123456789ab",
+   "file": "voices/0123456789ab.wav",
+   "sample_rate": 24000,
+   "duration_s": 6.5,
+   "clips_tested": 0,
+   "clips_flagged": null,
+   "emotional_range_tested": false,
+   "vocal_range_tested": false,
+   "passed": false,
+   "status": "UNTESTED: no listener available; this is not a pass"
+  },
+  {
+   "voice": "48fc5a81e40f",
+   "file": "voices/48fc5a81e40f.wav",
+   "sample_rate": 24000,
+   "duration_s": 6.5,
+   "clips_tested": 0,
+   "clips_flagged": null,
+   "emotional_range_tested": false,
+   "vocal_range_tested": false,
+   "passed": false,
+   "status": "UNTESTED: no listener available; this is not a pass"
+  },
+  {
+   "voice": "9f7b76ad555b",
+   "file": "voices/9f7b76ad555b.wav",
+   "sample_rate": 24000,
+   "duration_s": 6.5,
+   "clips_tested": 0,
+   "clips_flagged": null,
+   "emotional_range_tested": false,
+   "vocal_range_tested": false,
+   "passed": false,
+   "status": "UNTESTED: no listener available; this is not a pass"
+  },
+  {
+   "voice": "e6affb652941",
+   "file": "voices/e6affb652941.wav",
+   "sample_rate": 24000,
+   "duration_s": 6.5,
+   "clips_tested": 0,
+   "clips_flagged": null,
+   "emotional_range_tested": false,
+   "vocal_range_tested": false,
+   "passed": false,
+   "status": "UNTESTED: no listener available; this is not a pass"
+  }
+ ],
+ "measured_instead": "evaluation/results.json and results_heldout.json hold objective similarity and prosody metrics against pre-registered thresholds. They do not measure human indistinguishability.",
+ "needed": "Either human listeners, or an audio-capable model endpoint plus clips covering each voice across emotions and pitch range. No emotional-speech source clips exist in this project."
+}

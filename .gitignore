@@ -1,0 +1,50 @@
+# --- environments / caches
+.venv/
+.venv-seedvc/
+__pycache__/
+*.pyc
+
+# --- build outputs (reproducible from sources)
+build/
+build_out/
+build_out2/
+dist/
+dist_msi/
+dist_shrink_*/
+
+# --- run artifacts
+*.log
+*.done
+shot_*.txt
+*.part
+*.part.json
+
+# --- user data / local caches
+reference/
+models/
+evidence/
+live_run/
+
+# --- scratch
+ui_rerun*
+test_run_finish*
+
+# --- model weights (downloaded by the app at runtime; never commit)
+assets/seedvc/DiT_uvit_tat_xlsr_ema.pth
+assets/seedvc/campplus_cn_common.bin
+assets/seedvc/hift.pt
+assets/seedvc/wav2vec2-xls-r-300m/
+# --- personal voice recordings and generated evaluation audio
+voices/
+evaluation/converted/
+evaluation/converted_heldout/
+testdata/
+# --- scratch
+probe2.cmd
+real_bench.json
+real_bench2.json
+test_run_final.ps1
+
+# --- large experiment weights and personal test corpus
+experiments/meanflow/
+evaluation/corpus/

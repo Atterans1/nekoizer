@@ -1,0 +1,117 @@
+{
+ "note": "LLM judge scored the measured metrics only; it cannot hear audio. Pre-registered thresholds decide pass/fail.",
+ "rows": [
+  {
+   "n": 1,
+   "passed": true,
+   "voice": 3.399349,
+   "prosody": 2.0071442,
+   "accept": 0.09265915
+  },
+  {
+   "n": 2,
+   "passed": true,
+   "voice": 3.6676388,
+   "prosody": 3.9244576,
+   "accept": 0.9890879
+  },
+  {
+   "n": 3,
+   "passed": true,
+   "voice": 3.2135258,
+   "prosody": 3.8414357,
+   "accept": 0.91295505
+  },
+  {
+   "n": 4,
+   "passed": true,
+   "voice": 3.3428721,
+   "prosody": 3.859906,
+   "accept": 0.97345155
+  },
+  {
+   "n": 5,
+   "passed": true,
+   "voice": 3.3584633,
+   "prosody": 3.8687444,
+   "accept": 0.94721097
+  },
+  {
+   "n": 6,
+   "passed": true,
+   "voice": 3.4951856,
+   "prosody": 3.8427916,
+   "accept": 0.9562121
+  },
+  {
+   "n": 7,
+   "passed": true,
+   "voice": 3.4236505,
+   "prosody": 3.916983,
+   "accept": 0.9705764
+  },
+  {
+   "n": 8,
+   "passed": false,
+   "voice": 2.8260524,
+   "prosody": 1.2580882,
+   "accept": 0.017123822
+  },
+  {
+   "n": 9,
+   "passed": false,
+   "voice": 3.3142083,
+   "prosody": 0.3255853,
+   "accept": 0.03559229
+  },
+  {
+   "n": 10,
+   "passed": true,
+   "voice": 3.2323697,
+   "prosody": 3.949643,
+   "accept": 0.9779728
+  },
+  {
+   "n": 11,
+   "passed": false,
+   "voice": 2.8306742,
+   "prosody": 0.21049343,
+   "accept": 0.028271874
+  },
+  {
+   "n": 12,
+   "passed": false,
+   "voice": 0.95190847,
+   "prosody": 1.2330745,
+   "accept": 0.009770543
+  },
+  {
+   "n": 13,
+   "passed": true,
+   "voice": 3.6091542,
+   "prosody": 3.7233047,
+   "accept": 0.9818631
+  },
+  {
+   "n": 14,
+   "passed": true,
+   "voice": 3.5575986,
+   "prosody": 3.8710861,
+   "accept": 0.9842531
+  },
+  {
+   "n": 15,
+   "passed": false,
+   "voice": 3.1630464,
+   "prosody": 1.7712513,
+   "accept": 0.016312376
+  },
+  {
+   "n": 16,
+   "passed": false,
+   "voice": 3.1113496,
+   "prosody": 1.3833728,
+   "accept": 0.047704797
+  }
+ ]
+}

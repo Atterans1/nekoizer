@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Nekoizer works</title>
+<meta name="description" content="Set up Nekoizer in a few minutes: install, route your audio through VB-Cable, load a clip or an RVC voice, and talk.">
+<meta name="theme-color" content="#FF8FC7">
+<link rel="canonical" href="https://atterans.shop/guide.html">
+<link rel="icon" href="art/mimi_idle.png" type="image/png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Atterans">
+<meta property="og:title" content="How Nekoizer works"><meta property="og:description" content="Set up Nekoizer in a few minutes: install, route your audio through VB-Cable, load a clip or an RVC voice, and talk.">
+<meta property="og:image" content="https://atterans.shop/art/og_banner.png"><meta property="og:url" content="https://atterans.shop/guide.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="logo" href="index.html"><img src="art/mimi_idle.png" alt="" width="56" height="56"><span>Atterans</span></a>
+  <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="nekoizer.html" aria-current="page">Nekoizer</a>
+      <a href="fretwork.html">Fretwork</a>
+      <a href="namrig.html">Namrig</a>
+      <a href="attmusic.html">attmusic</a>
+      <a href="support.html">Support</a>
+  </nav>
+</header>
+<main id="main">
+
+  <section class="card prose"><h1>How it works</h1><p class="lead">Five small steps, about ten minutes the first time.</p>
+  <ol class="steps">
+    <li><img src="art/icon_download.png" alt="" width="48" height="48"><div><h2>1. Install</h2><p>Run the installer. It installs for your user only, so it needs no administrator rights. The first time you start Nekoizer it downloads its voice models (about 1.5 GB) and shows a progress window. The download resumes if it is interrupted.</p></div></li>
+    <li><img src="art/icon_cable.png" alt="" width="48" height="48"><div><h2>2. Install VB-Cable</h2><p>Nekoizer sends your converted voice to a virtual audio cable, which your chat app then uses as its microphone. Install the free VB-Cable from vb-audio.com. Nekoizer cannot install it for you.</p></div></li>
+    <li><img src="art/icon_headphones.png" alt="" width="48" height="48"><div><h2>3. Load a voice</h2><p>Drop a clip on a slot (wav, mp3, flac or ogg), choose a file, or paste an https link to one. For an RVC voice, drop its .pth or .zip on a slot. voice-models.com lists community RVC models, and the button in the app opens it. Download a model there, then import it from your disk.</p></div></li>
+    <li><img src="art/icon_waveform.png" alt="" width="48" height="48"><div><h2>4. Pick your devices</h2><p>Choose your real microphone as input and the cable as output, then press Start. In Discord, a game or OBS, choose the cable as the microphone.</p></div></li>
+    <li><img src="art/icon_wand.png" alt="" width="48" height="48"><div><h2>5. Tune and talk</h2><p>Nudge pitch, tone and emotion while you speak, or save a preset. Ctrl+Alt+1 to 4 switch between the four voice slots.</p></div></li>
+  </ol>
+  <h2>Good to know</h2>
+  <ul><li>You need an NVIDIA graphics card. Nekoizer was tested on a 4 GB laptop GPU. Clip voices run in real time with the default settings there. RVC voices were close to the limit on that card, so a larger block size may help.</li>
+  <li>The converted voice is for fun and creative use. Tell people when it matters, and only use voices you have the right to use.</li></ul>
+  <p class="cta"><a class="btn big " data-download href="downloads/Nekoizer-Setup-1.0.0.exe">Download for Windows <span>v<span data-version>1.0.0</span> · free · small installer</span></a></p></section>
+</main>
+<footer>
+  <img src="art/mimi_sleeping.png" alt="" width="48" height="48">
+  <p>Made with sparkles. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a data-donate href="https://ko-fi.com/tombstoneint" rel="noopener">Ko-fi</a></p>
+  <p class="fine">Not affiliated with Discord, VB-Audio, Hugging Face or Ko-fi. Only use voices you have the right to use.</p>
+</footer>
+<script src="config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

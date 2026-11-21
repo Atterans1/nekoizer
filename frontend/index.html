@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S2S Voice Changer</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="titlebar">
+  <h1>S2S Voice Changer</h1>
+  <div class="conn" id="conn" data-state="down"><span class="dot"></span><span id="conn-text">connecting</span></div>
+</header>
+<div class="banner" id="banner" hidden></div>
+<div class="layout">
+  <aside class="rail">
+    <h2>Voice Slots</h2>
+    <div class="reference" id="reference">No reference loaded</div>
+    <div id="slots" class="slots"></div>
+    <div class="slot slot-drop" id="drop" tabindex="0" role="button">
+      <span class="plus">+</span><span>drop .wav</span>
+      <input type="file" id="file" accept=".wav,audio/wav" hidden>
+    </div>
+    <div class="err" id="upload-err"></div>
+  </aside>
+  <main class="panel">
+    <section class="card">
+      <h2>Server Device Setting</h2>
+      <div class="row">
+        <label for="input-device">Input</label>
+        <select id="input-device"></select>
+      </div>
+      <div class="row">
+        <label for="output-device">Output</label>
+        <select id="output-device"></select>
+      </div>
+      <div class="row">
+        <span class="spacer"></span>
+        <button id="start" class="primary" type="button">Start</button>
+        <span class="runstate" id="runstate" data-running="false">stopped</span>
+      </div>
+      <div class="err" id="start-err"></div>
+    </section>
+
+    <section class="card">
+      <h2>Quality</h2>
+      <div class="ctl" data-key="chunk_ms" data-label="Chunk" data-unit="ms"></div>
+      <div class="ctl" data-key="crossfade_ms" data-label="Crossfade" data-unit="ms"></div>
+      <div class="ctl" data-key="cfm_steps" data-label="CFM steps"></div>
+    </section>
+
+    <section class="card">
+      <h2>Voice</h2>
+      <div class="ctl" data-key="pitch_semitones" data-label="Tune" data-unit="st" data-signed="1"></div>
+      <div class="ctl" data-key="timbre_blend" data-label="Timbre blend"></div>
+      <div class="ctl" data-key="f0_preserve" data-label="Preserve F0"></div>
+      <div class="ctl" data-key="vad_threshold" data-label="VAD threshold"></div>
+      <div class="ctl" data-key="output_gain" data-label="Output gain"></div>
+    </section>
+
+    <section class="card">
+      <h2>Preset</h2>
+      <div class="row">
+        <label for="preset-name">Save preset</label>
+        <input type="text" id="preset-name" autocomplete="off" spellcheck="false" placeholder="name">
+        <button id="save-preset" type="button">Save</button>
+      </div>
+      <div class="err" id="preset-err"></div>
+    </section>
+
+    <section class="card" id="voicegen">
+      <h2>Voice Creation</h2>
+      <div class="row top">
+        <label for="vg-text">Describe</label>
+        <textarea id="vg-text" rows="3" maxlength="300" spellcheck="true" placeholder="e.g. warm older woman, calm narrator"></textarea>
+      </div>
+      <div class="row">
+        <span class="spacer"></span>
+        <button id="vg-create" class="primary" type="button">Create voice</button>
+      </div>
+      <div class="err" id="vg-err"></div>
+      <pre class="vglog" id="vg-log" hidden></pre>
+      <div id="vg-result" hidden>
+        <audio id="vg-audio" controls preload="auto"></audio>
+        <div class="vgsource" id="vg-source"></div>
+        <div class="row">
+          <button id="vg-accept" class="primary" type="button">Accept</button>
+          <button id="vg-reject" type="button">Not quite</button>
+          <a id="vg-download" class="btn" hidden>Download</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Levels</h2>
+      <div class="meter"><span class="mlabel">In</span><div class="bar"><div class="fill" id="in-fill"></div></div><span class="mval" id="in-db">-</span></div>
+      <div class="meter"><span class="mlabel">Out</span><div class="bar"><div class="fill" id="out-fill"></div></div><span class="mval" id="out-db">-</span></div>
+    </section>
+
+    <section class="card perf">
+      <h2>Performance</h2>
+      <div class="perf-grid">
+        <div><span class="k">E2E latency</span><span class="v" id="p-e2e">-</span></div>
+        <div><span class="k">Inference / chunk</span><span class="v"><span class="rt" id="p-rt" data-ok="unknown"></span><span id="p-inf">-</span></span></div>
+        <div><span class="k">GPU</span><span class="v" id="p-gpu">-</span></div>
+        <div><span class="k">CPU</span><span class="v" id="p-cpu">-</span></div>
+        <div><span class="k">Backend</span><span class="v" id="p-backend">-</span></div>
+        <div><span class="k">Dropouts</span><span class="v" id="p-drop">-</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

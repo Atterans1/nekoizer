@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Namrig: an amp and cabinet rig plugin</title>
+<meta name="description" content="Namrig is an early-development VST3 amp and cabinet effect with a tone stack and tube stage, built with JUCE.">
+<meta name="theme-color" content="#FF8FC7">
+<link rel="canonical" href="https://atterans.shop/namrig">
+<link rel="icon" href="art/mimi_idle.png" type="image/png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Atterans">
+<meta property="og:title" content="Namrig: an amp and cabinet rig plugin"><meta property="og:description" content="Namrig is an early-development VST3 amp and cabinet effect with a tone stack and tube stage, built with JUCE.">
+<meta property="og:image" content="https://atterans.shop/art/og_banner.png"><meta property="og:url" content="https://atterans.shop/namrig">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="logo" href="index.html"><img src="art/mimi_idle.png" alt="" width="56" height="56"><span>Atterans</span></a>
+  <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="nekoizer.html">Nekoizer</a>
+      <a href="fretwork.html">Fretwork</a>
+      <a href="namrig.html" aria-current="page">Namrig</a>
+      <a href="attmusic.html">attmusic</a>
+      <a href="support.html">Support</a>
+  </nav>
+</header>
+<main id="main">
+
+  <section class="card prose"><h1>Namrig <span class="chip wip">VST3 plugin · early development</span></h1>
+  <p class="lead">An amp and cabinet effect for guitar in your DAW, with the plan of running Neural Amp Modeler files. It is at an early stage, and this page is honest about it.</p>
+  <h2>What works in the code today</h2>
+  <ul>
+    <li><strong>Tone stack:</strong> bass, mid and treble.</li>
+    <li><strong>Gain and mix:</strong> input gain, output gain, dry and wet mix, bypass.</li>
+    <li><strong>Cabinet and mic controls:</strong> cab mix, mic mix, mic distance and angle.</li>
+    <li><strong>Tube stage controls:</strong> tube type (12AX7, 12AT7, 12AU7, 6L6, EL34) and drive.</li>
+    <li>17 automatable parameters in total, as VST3 and standalone for Windows.</li>
+  </ul>
+  <h2>What does not work yet</h2>
+  <ul>
+    <li>The engine can load a Neural Amp Modeler (.nam) file, but the plugin does not call it yet, so no neural amp model is running.</li>
+    <li>The amp, cab and mic choices are placeholder entries (Model 1 to 4, Cab 1 to 4, Mic 1 to 4).</li>
+    <li>The editor is a plain window of sliders and shows only part of the controls.</li>
+  </ul>
+  <h2>Status</h2>
+  <p>The VST3 on my PC is 6.8 MB, built on 6 Nov 2026. There is no public download and no screenshot yet. I would rather show you nothing than a picture of something that does not do what a rig plugin should.</p>
+  <p class="cta"><a class="btn" href="index.html">All products</a><a class="btn alt" data-donate href="https://ko-fi.com/tombstoneint" rel="noopener">Support the work</a></p></section>
+</main>
+<footer>
+  <img src="art/mimi_sleeping.png" alt="" width="48" height="48">
+  <p>Made with sparkles. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a data-donate href="https://ko-fi.com/tombstoneint" rel="noopener">Ko-fi</a></p>
+  <p class="fine">Not affiliated with Discord, VB-Audio, Hugging Face, Image-Line or Ko-fi. Only use voices you have the right to use.</p>
+</footer>
+<script src="config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "registered_at": "2026-11-16, after the main run (10/16) and BEFORE any held-out conversion; never edited afterwards",
+  "voice_similarity": {
+    "independent_gain_min": 0.1,
+    "independent_gain_definition": "independent_cos(converted,target) - independent_cos(source,target)",
+    "campplus_cos_converted_target_min": 0.6,
+    "campplus_gain_over_source_min": 0.15
+  },
+  "prosody": {
+    "frames": "voiced frames where both source and converted are voiced via librosa.pyin, fmin 60, fmax 500, 16 kHz, hop 320",
+    "logf0_pearson_mean_removed_min": 0.55,
+    "min_jointly_voiced_frames": 40,
+    "log_rms_envelope_corr_min": 0.6,
+    "rms_hop_ms": 20,
+    "duration_ratio_converted_over_source": [
+      0.95,
+      1.05
+    ]
+  },
+  "pass_rules": {
+    "conversion": "passes only if all criteria above are met",
+    "set": "set passes if >=75% of conversions pass and no target has 0 passes"
+  },
+  "experiment": "HELD-OUT: fresh recordings never used in the main set; compares arm A (shipped defaults, f0_preserve=false) with arm B (f0_preserve=true)",
+  "pairs": "target i (sorted by id) with sources of recordings (i+1) mod 5 and (i+2) mod 5; 10 pairs per arm; identical pairs in both arms",
+  "limitation": "all five held-out voices are female-range (median F0 177-341 Hz); no male targets, so this cannot speak to the low-F0 failures of the main run",
+  "decision_rule": "Arm B becomes the recommended default ONLY if pass_rate(B) - pass_rate(A) >= 0.20 AND voice-similarity pass rate of B >= voice-similarity pass rate of A - 0.10. Otherwise the default stays unchanged. This run never alters the registered main-run verdict."
+}

@@ -1,0 +1,531 @@
+{
+ "files": [
+  {
+   "compress_size": 426622,
+   "crc32": 569327090,
+   "data_offset": 20349875,
+   "member": "torch/lib/c10.dll",
+   "relpath": "c10.dll",
+   "sha256": "0a37bba4704503691244293fecf9ff1817fd6f9f36d36ae4fc868db5794a22e0",
+   "size": 1113600
+  },
+  {
+   "compress_size": 120371,
+   "crc32": 196883431,
+   "data_offset": 20776544,
+   "member": "torch/lib/c10.lib",
+   "relpath": "c10.lib",
+   "sha256": "710141a9116eec8fe08a3dd01451fc711b203d5a74349d2c5562238276261f2a",
+   "size": 837540
+  },
+  {
+   "compress_size": 247740,
+   "crc32": 736668648,
+   "data_offset": 20896967,
+   "member": "torch/lib/c10_cuda.dll",
+   "relpath": "c10_cuda.dll",
+   "sha256": "7f002bad09605a59277880866b3b240924213bd231a3df6c1809df519c7c411b",
+   "size": 569856
+  },
+  {
+   "compress_size": 7466,
+   "crc32": 992571212,
+   "data_offset": 21144759,
+   "member": "torch/lib/c10_cuda.lib",
+   "relpath": "c10_cuda.lib",
+   "sha256": "35b6bd765dff04d387a73cf54decd181b91ea669dc19573d7e3abdaa09ed2774",
+   "size": 65114
+  },
+  {
+   "compress_size": 8069,
+   "crc32": 3600278908,
+   "data_offset": 21152281,
+   "member": "torch/lib/caffe2_nvrtc.dll",
+   "relpath": "caffe2_nvrtc.dll",
+   "sha256": "d2379e456cc59a7348b381407f95576524632cb9d41aa8e8431ece4f954ed016",
+   "size": 17920
+  },
+  {
+   "compress_size": 512,
+   "crc32": 2728730152,
+   "data_offset": 21160406,
+   "member": "torch/lib/caffe2_nvrtc.lib",
+   "relpath": "caffe2_nvrtc.lib",
+   "sha256": "0b50187d4839e3858df37de77a1e0fe9a3a715969f43e75bc4a1e3623b1ea048",
+   "size": 1850
+  },
+  {
+   "compress_size": 33777,
+   "crc32": 1381383428,
+   "data_offset": 21160969,
+   "member": "torch/lib/cpuinfo.lib",
+   "relpath": "cpuinfo.lib",
+   "sha256": "71c62e1c7d7300363e7bdef95300b6ca3a3271e6c04eb8353c2d02f46de0b651",
+   "size": 118382
+  },
+  {
+   "compress_size": 73039394,
+   "crc32": 2326002707,
+   "data_offset": 21194801,
+   "member": "torch/lib/cublas64_12.dll",
+   "relpath": "cublas64_12.dll",
+   "sha256": "01d8172b25d8e2d2cb6a276e76e719f5908c6124f484c8c8ca310fbe7b6634f3",
+   "size": 104883712
+  },
+  {
+   "compress_size": 361296642,
+   "crc32": 2832108008,
+   "data_offset": 94234252,
+   "member": "torch/lib/cublasLt64_12.dll",
+   "relpath": "cublasLt64_12.dll",
+   "sha256": "0d59d264782cec2782b9ac72483e53c9ba485a9d3a1e19b34071a17b8152102e",
+   "size": 531812352
+  },
+  {
+   "compress_size": 172092,
+   "crc32": 2306438904,
+   "data_offset": 455530949,
+   "member": "torch/lib/cudart64_12.dll",
+   "relpath": "cudart64_12.dll",
+   "sha256": "d954ca542b3b6bcf03cc2b798a7d00051501cf734ca751050e986af505cf9dad",
+   "size": 556544
+  },
+  {
+   "compress_size": 120391,
+   "crc32": 2999786129,
+   "data_offset": 455703094,
+   "member": "torch/lib/cudnn64_9.dll",
+   "relpath": "cudnn64_9.dll",
+   "sha256": "9edbcdff73b0af070eb160b2ce66e59feca04aa017351d8eedcc5e8e149967d2",
+   "size": 266288
+  },
+  {
+   "compress_size": 205801190,
+   "crc32": 2930703377,
+   "data_offset": 455823542,
+   "member": "torch/lib/cudnn_adv64_9.dll",
+   "relpath": "cudnn_adv64_9.dll",
+   "sha256": "f202e8ff36209ac4292fe2ef79d4539487495b3b948f0c978cc63298f43a1850",
+   "size": 282445872
+  },
+  {
+   "compress_size": 3169931,
+   "crc32": 2878961848,
+   "data_offset": 661624789,
+   "member": "torch/lib/cudnn_cnn64_9.dll",
+   "relpath": "cudnn_cnn64_9.dll",
+   "sha256": "3f03dec3b81f137f049e1d1c06ff469248eef54ff9424b3b9045fc0f69559d1a",
+   "size": 4618272
+  },
+  {
+   "compress_size": 355381603,
+   "crc32": 1818761458,
+   "data_offset": 664794793,
+   "member": "torch/lib/cudnn_engines_precompiled64_9.dll",
+   "relpath": "cudnn_engines_precompiled64_9.dll",
+   "sha256": "ebc2c1f74366b029a4350f7f9a3b109ccd5aa9b4ae02527950793dd29f7b74fb",
+   "size": 513926688
+  },
+  {
+   "compress_size": 11338925,
+   "crc32": 4124815616,
+   "data_offset": 1020176474,
+   "member": "torch/lib/cudnn_engines_runtime_compiled64_9.dll",
+   "relpath": "cudnn_engines_runtime_compiled64_9.dll",
+   "sha256": "93ab6351ca0f2b6ca842f83d284e56c427525778c14657229801a13cf8121bd8",
+   "size": 20201008
+  },
+  {
+   "compress_size": 913092,
+   "crc32": 1315758053,
+   "data_offset": 1031515458,
+   "member": "torch/lib/cudnn_graph64_9.dll",
+   "relpath": "cudnn_graph64_9.dll",
+   "sha256": "a933efeb280a3252297f92d79f7e83003bcbc6f665872d11645d1dbbab9cb598",
+   "size": 2420256
+  },
+  {
+   "compress_size": 20311373,
+   "crc32": 1639004532,
+   "data_offset": 1032428613,
+   "member": "torch/lib/cudnn_heuristic64_9.dll",
+   "relpath": "cudnn_heuristic64_9.dll",
+   "sha256": "458175f12771a35de0ea39c04250d727c2424d42a7ffe0bc987ae81204748fba",
+   "size": 56823328
+  },
+  {
+   "compress_size": 95909382,
+   "crc32": 633808811,
+   "data_offset": 1052740043,
+   "member": "torch/lib/cudnn_ops64_9.dll",
+   "relpath": "cudnn_ops64_9.dll",
+   "sha256": "851d8f4191a24b322b0be738d191a3159455f0da4db47a19f5cc7ad6e55edf61",
+   "size": 126508576
+  },
+  {
+   "compress_size": 199244153,
+   "crc32": 2885307466,
+   "data_offset": 1148649479,
+   "member": "torch/lib/cufft64_11.dll",
+   "relpath": "cufft64_11.dll",
+   "sha256": "cf3fdfe46470f694f9a1a6895ea2deb57d49059d08acfe5e12769ab3fcdc5320",
+   "size": 277351424
+  },
+  {
+   "compress_size": 84288,
+   "crc32": 877467432,
+   "data_offset": 1347893687,
+   "member": "torch/lib/cufftw64_11.dll",
+   "relpath": "cufftw64_11.dll",
+   "sha256": "07a6b785dbc1e3da5405a36599528f9ab7498ab4cd345a396d90aa0e4216a0c7",
+   "size": 163328
+  },
+  {
+   "compress_size": 1471225,
+   "crc32": 419077605,
+   "data_offset": 1347978035,
+   "member": "torch/lib/cupti64_2024.3.2.dll",
+   "relpath": "cupti64_2024.3.2.dll",
+   "sha256": "d7e6611b2f7aa8785176d3157940af41cb973ace0c4071b135f55defcd40d51b",
+   "size": 4759624
+  },
+  {
+   "compress_size": 55270955,
+   "crc32": 3290719839,
+   "data_offset": 1349449315,
+   "member": "torch/lib/curand64_10.dll",
+   "relpath": "curand64_10.dll",
+   "sha256": "0704875170e99155d74d533b50ade32ead16bc62f1b86e35c10640eaac4e08c9",
+   "size": 63279104
+  },
+  {
+   "compress_size": 95465899,
+   "crc32": 1581765949,
+   "data_offset": 1404720327,
+   "member": "torch/lib/cusolver64_11.dll",
+   "relpath": "cusolver64_11.dll",
+   "sha256": "ff4189c2c50ac95bde19cab8e0ae00587ffaeb4bfecb94a028da052a8d2686a1",
+   "size": 138290688
+  },
+  {
+   "compress_size": 53780791,
+   "crc32": 488484166,
+   "data_offset": 1500186285,
+   "member": "torch/lib/cusolverMg64_11.dll",
+   "relpath": "cusolverMg64_11.dll",
+   "sha256": "e4131f30f911e19ab4afc3a65cc6aba52d0be16e1a52d0ff4e10432d70e30114",
+   "size": 84664320
+  },
+  {
+   "compress_size": 213677455,
+   "crc32": 2965293887,
+   "data_offset": 1553967133,
+   "member": "torch/lib/cusparse64_12.dll",
+   "relpath": "cusparse64_12.dll",
+   "sha256": "dffd92820ed8f36cd11f59aec998a7b8fb357a87c014496c193dde8b082b7b33",
+   "size": 287642112
+  },
+  {
+   "compress_size": 6004,
+   "crc32": 4196113019,
+   "data_offset": 1767644637,
+   "member": "torch/lib/fmt-c.lib",
+   "relpath": "fmt-c.lib",
+   "sha256": "42ddb4f244a56cfb51375ecdb9549a787423b9fcc2b70180b0445e5893cade68",
+   "size": 24980
+  },
+  {
+   "compress_size": 384759,
+   "crc32": 1204275313,
+   "data_offset": 1767650695,
+   "member": "torch/lib/fmt-module.lib",
+   "relpath": "fmt-module.lib",
+   "sha256": "c51665924f36bb791954e1b6336b964238ca66e583d58fcd564a3d28bed035bd",
+   "size": 2614802
+  },
+  {
+   "compress_size": 263963,
+   "crc32": 2772045405,
+   "data_offset": 1768035501,
+   "member": "torch/lib/fmt.lib",
+   "relpath": "fmt.lib",
+   "sha256": "a30882fb944b8bc2dd658e0e291d5c73049278bde2dc770781683169a353c7f3",
+   "size": 1431778
+  },
+  {
+   "compress_size": 687615,
+   "crc32": 1108108608,
+   "data_offset": 1768299518,
+   "member": "torch/lib/libiomp5md.dll",
+   "relpath": "libiomp5md.dll",
+   "sha256": "de6d18b2dec5811f7932950282a4c8218c5f287db04ff320dcbaa74733d6fcce",
+   "size": 1617536
+  },
+  {
+   "compress_size": 19475,
+   "crc32": 849973097,
+   "data_offset": 1768987192,
+   "member": "torch/lib/libiompstubs5md.dll",
+   "relpath": "libiompstubs5md.dll",
+   "sha256": "c477314c1b489c75455b9738452760cd275a254822762079e001e27f79eb25cb",
+   "size": 44160
+  },
+  {
+   "compress_size": 58331,
+   "crc32": 300762502,
+   "data_offset": 1769006723,
+   "member": "torch/lib/libittnotify.lib",
+   "relpath": "libittnotify.lib",
+   "sha256": "416d75257c16d72b559d03fb5bfc3615d60ac23c218c2a75edeb7d93e4b73496",
+   "size": 287624
+  },
+  {
+   "compress_size": 96,
+   "crc32": 945750427,
+   "data_offset": 1769065113,
+   "member": "torch/lib/libshm/alloc_info.h",
+   "relpath": "libshm/alloc_info.h",
+   "sha256": "645a0b6fdd40426e3f88af9e14d95b2369f6b5d8d5b56e4a0a0818086567ada3",
+   "size": 113
+  },
+  {
+   "compress_size": 513,
+   "crc32": 823004814,
+   "data_offset": 1769065261,
+   "member": "torch/lib/libshm/err.h",
+   "relpath": "libshm/err.h",
+   "sha256": "b3f8ec03a27a2931b2e8448764f13dfd2f4d8557c2fa47e8b528b49b93d7788c",
+   "size": 1283
+  },
+  {
+   "compress_size": 476,
+   "crc32": 3526703330,
+   "data_offset": 1769065829,
+   "member": "torch/lib/libshm/libshm.h",
+   "relpath": "libshm/libshm.h",
+   "sha256": "ff9590ed3264c6b54f4f7318c8d5d59d2dc2c39230f944d9dfe60e8cae5ce9aa",
+   "size": 1251
+  },
+  {
+   "compress_size": 1334,
+   "crc32": 2679989161,
+   "data_offset": 1769066360,
+   "member": "torch/lib/libshm/socket.h",
+   "relpath": "libshm/socket.h",
+   "sha256": "264d48745a2caea60c17467c9d3cef56f53eac0bd847001b02f5b20936352e1d",
+   "size": 4486
+  },
+  {
+   "compress_size": 327,
+   "crc32": 857514312,
+   "data_offset": 1769067757,
+   "member": "torch/lib/libshm_windows/libshm.h",
+   "relpath": "libshm_windows/libshm.h",
+   "sha256": "4cda048d2158eaf99ff698b5966f05d2a2e4fd2b613312c31864eb74a7a883b1",
+   "size": 815
+  },
+  {
+   "compress_size": 252640,
+   "crc32": 4204406085,
+   "data_offset": 1769068149,
+   "member": "torch/lib/mimalloc-2.4/mimalloc.lib",
+   "relpath": "mimalloc-2.4/mimalloc.lib",
+   "sha256": "32f4bbf2c310dc96d2e7a2740026c4b835b356de1ab4a1f2aec7fda50adeb808",
+   "size": 886150
+  },
+  {
+   "compress_size": 16436271,
+   "crc32": 1631485211,
+   "data_offset": 1769320848,
+   "member": "torch/lib/nvJitLink_120_0.dll",
+   "relpath": "nvJitLink_120_0.dll",
+   "sha256": "8bdfe39adb72bf4fd7ed665dc242df1e48da015b641651183d35e9a7db76abe8",
+   "size": 39236608
+  },
+  {
+   "compress_size": 21164,
+   "crc32": 4004429352,
+   "data_offset": 1827932679,
+   "member": "torch/lib/nvToolsExt64_1.dll",
+   "relpath": "nvToolsExt64_1.dll",
+   "sha256": "0fe54f1b80ad3e44da2a3d9f0956e7c3903029d6319689ce1c4068f7a20932f3",
+   "size": 48128
+  },
+  {
+   "compress_size": 3174822,
+   "crc32": 4247721854,
+   "data_offset": 1785757174,
+   "member": "torch/lib/nvperf_host.dll",
+   "relpath": "nvperf_host.dll",
+   "sha256": "2e27b0e4444b8fc3737668c8965a042d47912a4287540bf31705de58fa84b081",
+   "size": 15363656
+  },
+  {
+   "compress_size": 1166973,
+   "crc32": 2115974860,
+   "data_offset": 1788932060,
+   "member": "torch/lib/nvrtc-builtins64_126.dll",
+   "relpath": "nvrtc-builtins64_126.dll",
+   "sha256": "49b2d9298a97425f32bd74767ed784d702c2831a132459e254b49144ecf23c02",
+   "size": 5345792
+  },
+  {
+   "compress_size": 18928956,
+   "crc32": 2367386710,
+   "data_offset": 1790099094,
+   "member": "torch/lib/nvrtc64_120_0.alt.dll",
+   "relpath": "nvrtc64_120_0.alt.dll",
+   "sha256": "aeec38166605a19898caaf238ba9afeccaa7954760f324362be7f052aa3da0d6",
+   "size": 45926912
+  },
+  {
+   "compress_size": 18904514,
+   "crc32": 793270995,
+   "data_offset": 1809028107,
+   "member": "torch/lib/nvrtc64_120_0.dll",
+   "relpath": "nvrtc64_120_0.dll",
+   "sha256": "01700cdf0f7f566439260201a8b7ee57f914b56f639770f83feb0d1f2a078567",
+   "size": 45865984
+  },
+  {
+   "compress_size": 86794,
+   "crc32": 928981090,
+   "data_offset": 1827953898,
+   "member": "torch/lib/pthreadpool.lib",
+   "relpath": "pthreadpool.lib",
+   "sha256": "010e52695f0c10e59c65f21da5d4370958921e1d0fd6c13fa396543def10dddb",
+   "size": 304992
+  },
+  {
+   "compress_size": 6473,
+   "crc32": 2787022547,
+   "data_offset": 1828040739,
+   "member": "torch/lib/shm.dll",
+   "relpath": "shm.dll",
+   "sha256": "705091644ed5976180860710da2e1099c9cac42c000e3d2c4b15fe452f89debf",
+   "size": 15360
+  },
+  {
+   "compress_size": 854,
+   "crc32": 2201910122,
+   "data_offset": 1828047259,
+   "member": "torch/lib/shm.lib",
+   "relpath": "shm.lib",
+   "sha256": "0f281128e8748dcfa63a9f6f3c704755a6dff7bb3f40b4bf7a7f4766150d69c2",
+   "size": 3790
+  },
+  {
+   "compress_size": 2468111,
+   "crc32": 439104341,
+   "data_offset": 1828048162,
+   "member": "torch/lib/sleef.lib",
+   "relpath": "sleef.lib",
+   "sha256": "c549a8168c963df50688fc591ec821ff52ed189ff4bb8f8873c661e40f5871c6",
+   "size": 8811892
+  },
+  {
+   "compress_size": 4451,
+   "crc32": 1354355725,
+   "data_offset": 1830516322,
+   "member": "torch/lib/torch.dll",
+   "relpath": "torch.dll",
+   "sha256": "8a0ec2c3f9d3c4bc18b9a32e080c39ab163004f4f47e88335b03d651f3f3e85e",
+   "size": 9728
+  },
+  {
+   "compress_size": 523,
+   "crc32": 848044515,
+   "data_offset": 1830520822,
+   "member": "torch/lib/torch.lib",
+   "relpath": "torch.lib",
+   "sha256": "29d1371ffc604de7170c9536163bc7feb992dabb493ecd2438c5edf32712c8dd",
+   "size": 1832
+  },
+  {
+   "compress_size": 84409753,
+   "crc32": 1079480933,
+   "data_offset": 1830521398,
+   "member": "torch/lib/torch_cpu.dll",
+   "relpath": "torch_cpu.dll",
+   "sha256": "552916bbd9aeef78621bd91a81d10a7ab09b99a65d8f9062d0707d3ed3ba3058",
+   "size": 305994752
+  },
+  {
+   "compress_size": 3185053,
+   "crc32": 521410879,
+   "data_offset": 1914931204,
+   "member": "torch/lib/torch_cpu.lib",
+   "relpath": "torch_cpu.lib",
+   "sha256": "8fcf0b931ed7ac3783564c3ec6a8f50c19ce82775911c4f9e5e0dbd1fc2f22ab",
+   "size": 29325638
+  },
+  {
+   "compress_size": 672992145,
+   "crc32": 3226819385,
+   "data_offset": 1918116311,
+   "member": "torch/lib/torch_cuda.dll",
+   "relpath": "torch_cuda.dll",
+   "sha256": "1b2cb863a537ef1ae62f3c54d8f0bf84dd69eae1ab169cdf8d8c25ddaab22fa9",
+   "size": 1060441600
+  },
+  {
+   "compress_size": 194198,
+   "crc32": 1549412273,
+   "data_offset": 2591108510,
+   "member": "torch/lib/torch_cuda.lib",
+   "relpath": "torch_cuda.lib",
+   "sha256": "b9ca6f72c124eb1f01f93e81f7d22297cade36d165568ee4c592a14ae10242a4",
+   "size": 1846378
+  },
+  {
+   "compress_size": 4338,
+   "crc32": 1474609273,
+   "data_offset": 2591302769,
+   "member": "torch/lib/torch_global_deps.dll",
+   "relpath": "torch_global_deps.dll",
+   "sha256": "a5d7e2fc58a788111b39d066ea2a5d97d6aeeaa01873e45e822cb77f2443249d",
+   "size": 9728
+  },
+  {
+   "compress_size": 6140183,
+   "crc32": 3366405891,
+   "data_offset": 2591307163,
+   "member": "torch/lib/torch_python.dll",
+   "relpath": "torch_python.dll",
+   "sha256": "8d770c020286bc15f7df4f287e1a11c2b16d332ad2fc395d85133982377f2c06",
+   "size": 20707328
+  },
+  {
+   "compress_size": 39603,
+   "crc32": 56912968,
+   "data_offset": 2597447402,
+   "member": "torch/lib/torch_python.lib",
+   "relpath": "torch_python.lib",
+   "sha256": "d01ab9344c904521a7ec6b01998717e1a3e4016ec1cb716ec0272b8db763961e",
+   "size": 292766
+  },
+  {
+   "compress_size": 95279,
+   "crc32": 3212443786,
+   "data_offset": 2597487051,
+   "member": "torch/lib/uv.dll",
+   "relpath": "uv.dll",
+   "sha256": "fa569e682fc5fb7a8eb94c6829af9f30a569748dbbc6bce39735d48bc960bcf8",
+   "size": 195072
+  },
+  {
+   "compress_size": 46080,
+   "crc32": 1809746884,
+   "data_offset": 2597582382,
+   "member": "torch/lib/zlibwapi.dll",
+   "relpath": "zlibwapi.dll",
+   "sha256": "1f047faec08d9a35c304fb4a7cf13853589359a8f7cbfdd48c5d5807712dcf05",
+   "size": 89088
+  }
+ ],
+ "format": 1,
+ "wheel": {
+  "size": 2602771598,
+  "url": "https://download.pytorch.org/whl/cu126/torch-2.14.0%2Bcu126-cp312-cp312-win_amd64.whl"
+ }
+}

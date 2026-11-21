@@ -1,0 +1,9 @@
+{"numpy": "2.5.3", "scipy": "1.18.1", "librosa": "0.11.0", "soundfile": "0.14.0", "pyworld": "0.3.5", "resemblyzer": "ok", "webrtcvad": "2.0.14.post1", "transformers": "5.2.0", "torch": "2.14.0+cu126", "torchaudio": "2.11.0+cu126", "torchfcpe": "ok", "onnxruntime": "1.32.0"}
+cuda True threads 8
+legacy metrics funcs ['Cos', 'F0', 'F0_FMAX', 'F0_FMIN', 'F0_HOP', 'MIN_JOINT_FRAMES', 'Pearson', 'Prosody', 'RMS_FRAME', 'RMS_HOP']
+Loaded the voice encoder model on cpu in 0.05 seconds.
+ref_0 sr 24000 len 156000
+resemblyzer emb (256,) 1.0
+campplus emb (1, 192)
+source clip d32847d5acfb_source sr 24000 shape (165312,) peak 0.415130615234375
+elapsed 39.5

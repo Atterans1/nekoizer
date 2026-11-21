@@ -1,0 +1,25 @@
+{
+ "endpoint": "https://api.runpod.ai/v2/black-forest-labs-flux-1-schnell",
+ "date": "2026-11-19",
+ "steps": 4,
+ "seed": 7,
+ "size": "512x512 (hero 1024x512)",
+ "cost_usd_each": 0.003,
+ "style_prefix": "16-bit pixel art sprite, kawaii, chunky dark plum outline, pastel colors pink mint sky butter lilac, flat shading, plain solid cream #FFF4F8 background, centered, no text, no letters",
+ "mascot": "cute round microphone creature mascot named Mimi with tiny sparkle eyes and blush cheeks",
+ "assets": [
+  "mimi_idle",
+  "mimi_talking",
+  "mimi_sleeping",
+  "mimi_error",
+  "mimi_success",
+  "mimi_thinking",
+  "icon_headphones",
+  "icon_cable",
+  "icon_waveform",
+  "icon_wand",
+  "icon_gear",
+  "hero_scene",
+  "bg_tile"
+ ]
+}

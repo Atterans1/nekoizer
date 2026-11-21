@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/art/mimi_idle.png" type="image/png">
+  <title>Nekoizer</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <a class="skip" href="#controls">Skip to controls</a>
+  <header class="topbar">
+    <img id="mimi" class="mimi" src="/static/art/mimi_sleeping.png" alt="Mimi the mascot, sleeping" width="64" height="64">
+    <h1>Nekoizer</h1>
+    <dl class="status" aria-label="Pipeline status">
+      <div><dt>Pipeline</dt><dd id="st-pipeline">loading</dd></div>
+      <div><dt>Input</dt><dd id="st-input">n/a</dd></div>
+      <div><dt>Output</dt><dd id="st-output">n/a</dd></div>
+      <div><dt>Latency</dt><dd id="st-latency">n/a</dd></div>
+      <div><dt>Underruns</dt><dd id="st-underruns">n/a</dd></div>
+      <div><dt>Balancer</dt><dd id="st-balancer">n/a</dd></div>
+      <div><dt>Engine</dt><dd id="st-engine">n/a</dd></div>
+    </dl>
+  </header>
+  <main id="controls">
+    <p id="msg" class="msg" role="status" aria-live="polite"></p>
+    <section aria-labelledby="h-refs">
+      <h2 id="h-refs"><img class="ico" src="/static/art/icon_headphones.png" alt="" width="24" height="24">Reference bank</h2>
+      <p class="hint">Hotkeys: Ctrl+Alt+1 to 0 select a slot for manual mode. Drop a .wav on a card, choose a file, or record up to 10 s. Drop a .pth, .zip or .index file on a card to add an RVC voice. Auto emotion mode uses reference clips only. An RVC voice is chosen with its slot's Use this voice button, Select for manual, or Ctrl+Alt+1 to 0.</p>
+      <p id="rvc-weights" class="hint" role="status" aria-live="polite"></p>
+      <div id="slots" class="slots"></div>
+      <div class="weblink">
+        <label for="url-slot">Import a voice from a link</label>
+        <select id="url-slot"></select>
+        <input id="url-input" type="url" placeholder="link to a wav, flac, ogg or mp3 file" autocomplete="off" spellcheck="false">
+        <button id="url-go" type="button">Import</button>
+        <button id="library-open" type="button">Browse voice-models.com</button>
+        <p class="hint">Any wav, flac, ogg or mp3 file works from your computer too: drop it on a slot. voice-models.com lists RVC voices, and Nekoizer runs them now: download a voice's zip and drop it on a slot, or paste a direct link to a .zip or .pth file above. Links to Google Drive or to web pages cannot be fetched: download the file yourself and drop it on a slot. Only use voices you have the right to use.</p>
+      </div>
+    </section>
+    <section aria-labelledby="h-rack">
+      <h2 id="h-rack"><img class="ico" src="/static/art/icon_waveform.png" alt="" width="24" height="24">Tone rack</h2>
+      <div id="sliders" class="rack"></div>
+      <fieldset class="options">
+        <legend>Options</legend>
+        <label class="switch"><input type="checkbox" id="monitor_enabled" role="switch"> Sidetone monitor</label>
+        <label class="switch"><input type="checkbox" id="auto_balancer" role="switch"> Auto balancer</label>
+        <fieldset class="emotion">
+          <legend>Emotion mode</legend>
+          <label><input type="radio" name="emotion_mode" value="auto" id="emo-auto"> Auto</label>
+          <label><input type="radio" name="emotion_mode" value="manual" id="emo-manual"> Manual</label>
+        </fieldset>
+      </fieldset>
+    </section>
+    <section aria-labelledby="h-presets">
+      <h2 id="h-presets"><img class="ico" src="/static/art/icon_wand.png" alt="" width="24" height="24">Presets</h2>
+      <div id="presets" class="presets"></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+  <script src="/static/mascot.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Per-user MSI for the app folder (about 0.6 GB; the CUDA runtime DLLs are fetched on first run, see runtime_libs.py).
+     installer/build_installer.ps1 builds it and the setup .exe that chains it. -->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="Nekoizer" Manufacturer="Nekoizer" Version="$(Version)" Scope="perUser"
+           UpgradeCode="$(UpgradeCode)" Language="1033">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Nekoizer is already installed." />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="medium" MaximumUncompressedMediaSize="1500" />
+    <Icon Id="AppIcon" SourceFile="$(InstallerDir)\mimi.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
+    <Property Id="ARPURLINFOABOUT" Value="https://ko-fi.com/tombstoneint" />
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="ProgramsDir" Name="Programs">
+        <Directory Id="INSTALLFOLDER" Name="Nekoizer">
+          <Files Include="$(SourceDir)\**" />
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="StartFolder" Name="Nekoizer">
+        <Component Id="StartMenuShortcut" Guid="*">
+          <Shortcut Id="AppShortcut" Name="Nekoizer" Target="[INSTALLFOLDER]Nekoizer.exe"
+                    WorkingDirectory="INSTALLFOLDER" Icon="AppIcon" />
+          <RemoveFolder Id="RemoveStartFolder" On="uninstall" />
+          <RegistryValue Root="HKCU" Key="Software\Nekoizer" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+  </Package>
+</Wix>

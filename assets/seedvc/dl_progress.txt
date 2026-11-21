@@ -1,0 +1,2 @@
+DiT_uvit_tat_xlsr_ema.pth size=142112203 expected=142112203 sha_ok=True|config_dit_mel_seed_uvit_xlsr_tiny.yml size=2100 expected=2100 sha_ok=n/a|campplus_cn_common.bin size=28036335 expected=28036335 sha_ok=True|hift.pt size=81896716 expected=81896716 sha_ok=True|config.json size=1568 expected=1568 sha_ok=n/a|preprocessor_config.json size=212 expected=212 sha_ok=n/a|pytorch_model.bin size=1269737156 expected=1269737156 sha_ok=True|seed-vc-51383efd921027683c89e5348211d93ff12ac2a8.zip size=0 expected= sha_ok=n/a
+
