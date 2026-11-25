@@ -91,7 +91,27 @@ def CreateApp(pipeline: Any) -> FastAPI:
 
     @app.get("/api/devices")
     async def GetDevices() -> dict:
-        return {"devices": _Plain(await _Call(pipeline.ListDevices))}
+        inputs = sorted(_Plain(await _Call(pipeline.ListDevices)), key=lambda r: (not r.get("is_default"), r["name"].lower()))
+        outputs = _Plain(await _Call(pipeline.ListOutputDevices)) if hasattr(pipeline, "ListOutputDevices") else []
+        return {"devices": inputs, "inputs": inputs, "outputs": outputs}
+
+    @app.post("/api/start")
+    async def StartPipeline(request: Request):
+        body = await request.json() if await request.body() else {}
+        input_id = body.get("input_id")
+        output_id = body.get("output_id")
+        kwargs: dict = {}
+        if input_id is not None:
+            kwargs["input_id"] = int(input_id)
+        if output_id is not None:
+            kwargs["output_id"] = int(output_id)
+        result = await _Call(pipeline.Start, **kwargs)
+        return _Plain(result)
+
+    @app.post("/api/stop")
+    async def StopPipeline() -> dict:
+        await _Call(pipeline.Stop)
+        return {"ok": True, "running": False}
 
     @app.post("/api/slot/{idx}")
     async def PostSlot(idx: int, request: Request) -> dict:

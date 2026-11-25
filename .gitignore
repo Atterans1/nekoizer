@@ -8,6 +8,8 @@ __pycache__/
 build/
 build_out/
 build_out2/
+build_out_final/
+build_out_v*/
 dist/
 dist_msi/
 dist_shrink_*/
@@ -48,3 +50,18 @@ test_run_final.ps1
 # --- large experiment weights and personal test corpus
 experiments/meanflow/
 evaluation/corpus/
+
+# --- local build/publish debris (not part of the source)
+build_out*/
+dist_msi_build*/
+build_run*.ps1
+build_run*.start
+build_wix*.ps1
+launch_*.ps1
+tmp_*.ps1
+fetch_retry.*
+check_embed.ps1
+extract_setup*.ps1
+strings_setup*.ps1
+list_setup*.ps1
+run_unittest*.ps1

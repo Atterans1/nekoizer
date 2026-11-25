@@ -50,7 +50,7 @@ class ConstantsTest(unittest.TestCase):
         self.assertEqual(P.EMOTION_ANGRY_PITCH_STD_ST, 2.5)
         self.assertEqual(P.EMOTION_HYPED_PITCH_STD_ST, 3.5)
         self.assertEqual(P.EMOTION_EMBED_TAU_S, 0.2)
-        self.assertEqual(P.SLOT_NAMES, ("Neutral", "Hyped/Laughing", "Whisper/Soft", "Angry/Intense", "Sad/Low", "Excited/Fast", "Calm/Warm", "Serious/Deadpan", "Playful/Teasing", "Tense/Fearful"))
+        self.assertEqual(P.SLOT_NAMES, tuple("slot " + str(i + 1) for i in range(10)))
 
 
 class RuleTest(unittest.TestCase):

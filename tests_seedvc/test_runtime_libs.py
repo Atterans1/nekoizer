@@ -265,5 +265,22 @@ class WindowedJobRoutingTest(unittest.TestCase):
             app_seedvc._FetchRuntimeEntry(entry, None)
         self.assertEqual(calls, [(entry, None, None)])
 
+
+class ChunkDeadlineTest(unittest.TestCase):
+    def test_a_trickling_range_read_raises_after_the_deadline(self):
+        """Regression: a connection that feeds every socket read inside the timeout but never finishes the chunk must raise (and be
+        retried), not hang for hours like the first-run cublas64_12 fetch did."""
+        from unittest import mock
+        fake_response = io.BytesIO(b"\x00" * 128)
+        fake_response.status = 206
+        fake_response.headers = {"Content-Range": "bytes 0-127/128"}
+        fake_ctx = fake_response  # BytesIO already supports the context-manager protocol
+        file_ = runtime_libs.HttpRangeFile("http://localhost/wheel.whl", 128)
+        file_.seek(0)
+        with mock.patch.object(runtime_libs.urllib.request, "urlopen", lambda request, timeout: fake_ctx), \
+             mock.patch.object(runtime_libs.time, "monotonic", side_effect=[1000.0, 1301.0]):
+            with self.assertRaisesRegex(OSError, "beyond the 300 s deadline"):
+                file_.readinto(bytearray(128))
+
 if __name__ == "__main__":
     unittest.main()

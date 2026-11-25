@@ -46,7 +46,7 @@ class TruncationTest(unittest.TestCase):
         self.assertEqual(info["seconds_used"], 3.0)
         self.assertEqual(info["prompt_tokens"], 258)
         self.assertEqual(info["embedding_dim"], 192)
-        self.assertEqual(info["name"], "Neutral")
+        self.assertEqual(info["name"], "slot 1")
         self.assertFalse(info["cached"])
 
     def test_short_clip_is_used_whole(self):

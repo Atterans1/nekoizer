@@ -3,7 +3,7 @@
 
   /* ---------------------------------------------------------------- PUBLIC */
 
-  var State = { params: {}, ranges: {}, running: false, reference: null, presets: [] };
+  var State = { params: {}, ranges: {}, running: false, references: {}, presets: [] };
   var Controls = {};
   var Socket = null;
   var ReconnectDelay = 500;
@@ -65,7 +65,7 @@
       State.params = data.params;
       State.ranges = data.ranges;
       State.running = data.running;
-      State.reference = data.reference;
+      State.references[0] = data.reference;
       State.presets = data.presets;
       Banner("");
       ApplyRanges();
@@ -278,7 +278,7 @@
   function LoadDevices() {
     return Api("GET", "/api/devices").then(function (data) {
       Populate($("#input-device"), data.inputs, null);
-      Populate($("#output-device"), data.outputs, "CABLE Input");
+      Populate($("#output-device"), data.outputs, null);   // server sorts the default output first
       ShowError("#start-err", "");
     }).catch(function (e) { ShowError("#start-err", "device list failed: " + e.message); });
   }
@@ -321,34 +321,51 @@
   /* ---- voice slots + upload */
 
   function RenderRail() {
-    var ref = State.reference;
-    SetText("#reference", ref
-      ? "Reference: " + ref.name + " · " + Fmt(ref.duration_s, 1, "s") + " · " + (ref.sample_rate || "-") + " Hz"
-      : "No reference loaded");
     var holder = $("#slots");
     holder.innerHTML = "";
-    State.presets.forEach(function (name) {
+    for (var i = 0; i < 10; i++) {
+      var ref = State.references[i];
       var card = document.createElement("div");
-      card.className = "slot" + (ref && ref.name === name ? " active" : "");
+      card.className = "slot" + (ref ? " active" : "");
+      card.dataset.slot = i;
+      card.setAttribute("role", "button");
+      card.setAttribute("tabindex", "0");
       var label = document.createElement("span");
       label.className = "name";
-      label.textContent = name;
+      label.textContent = "Slot " + (i + 1);
+      var info = document.createElement("span");
+      info.className = "info";
+      info.textContent = ref ? ref.name + " · " + Fmt(ref.duration_s, 1, "s") + " · " + (ref.sample_rate || "-") + " Hz" : "empty";
       var del = document.createElement("button");
       del.className = "del";
       del.type = "button";
-      del.title = "Delete preset";
+      del.title = "Clear slot";
       del.textContent = "×";
       card.appendChild(label);
+      card.appendChild(info);
       card.appendChild(del);
-      card.addEventListener("click", function () { LoadPreset(name); });
-      del.addEventListener("click", function (e) { e.stopPropagation(); DeletePreset(name); });
+      card.addEventListener("click", function () { PickSlot(this.dataset.slot); });
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { PickSlot(this.dataset.slot); }
+      });
+      del.addEventListener("click", function (e) {
+        e.stopPropagation();
+        ClearSlot(this.closest(".slot").dataset.slot);
+      });
+      card.addEventListener("dragover", function (e) { e.preventDefault(); this.classList.add("over"); });
+      card.addEventListener("dragleave", function () { this.classList.remove("over"); });
+      card.addEventListener("drop", function (e) {
+        e.preventDefault();
+        this.classList.remove("over");
+        if (e.dataTransfer.files.length) { Upload(e.dataTransfer.files[0], this.dataset.slot); }
+      });
       holder.appendChild(card);
-    });
+    }
   }
 
   function LoadPreset(name) {
     Api("POST", "/api/presets/load", { name: name }).then(function (ref) {
-      State.reference = ref;
+      State.references[0] = ref;
       ShowError("#upload-err", "");
       RenderRail();
     }).catch(function (e) { ShowError("#upload-err", e.message); });
@@ -363,32 +380,54 @@
     }).catch(function (e) { ShowError("#upload-err", e.message); });
   }
 
-  function Upload(file) {
+  function Upload(file, slot) {
     var form = new FormData();
     form.append("file", file, file.name);
+    form.append("slot", slot);
     ShowError("#upload-err", "");
     Api("POST", "/api/reference", form).then(function (ref) {
-      State.reference = ref;
+      State.references[slot] = ref;
       RenderRail();
     }).catch(function (e) { ShowError("#upload-err", e.message); });
   }
 
-  function BindRail() {
-    var drop = $("#drop");
+  function PickSlot(slot) {
     var input = $("#file");
-    drop.addEventListener("click", function () { input.click(); });
-    drop.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { input.click(); } });
+    input.dataset.slot = slot;
+    input.click();
+  }
+
+  function ClearSlot(slot) {
+    Api("DELETE", "/api/reference/" + encodeURIComponent(slot)).then(function (data) {
+      State.references[slot] = null;
+      RenderRail();
+    }).catch(function (e) { ShowError("#upload-err", e.message); });
+  }
+
+  
+  function BindRail() {
+    var input = $("#file");
     input.addEventListener("change", function () {
-      if (input.files.length) { Upload(input.files[0]); }
+      if (input.files.length) { Upload(input.files[0], input.dataset.slot || 0); }
       input.value = "";
     });
-    drop.addEventListener("dragover", function (e) { e.preventDefault(); drop.classList.add("over"); });
-    drop.addEventListener("dragleave", function () { drop.classList.remove("over"); });
-    drop.addEventListener("drop", function (e) {
-      e.preventDefault();
-      drop.classList.remove("over");
-      if (e.dataTransfer.files.length) { Upload(e.dataTransfer.files[0]); }
-    });
+    var urlGo = $("#url-go");
+    if (urlGo) {
+      urlGo.addEventListener("click", function () {
+        var url = $("#url-input").value.trim();
+        if (!url) { ShowError("#url-err", "Please enter a URL."); return; }
+        ShowError("#url-err", "");
+        ImportFromUrl(url);
+      });
+    }
+  }
+
+  function ImportFromUrl(url) {
+    ShowError("#url-err", "");
+    Api("POST", "/api/slot/0/url", JSON.stringify({ url: url })).then(function (ref) {
+      State.references[0] = ref;
+      RenderRail();
+    }).catch(function (e) { ShowError("#url-err", e.message); });
   }
 
   function BindPreset() {
@@ -396,7 +435,7 @@
       var name = $("#preset-name").value.trim();
       Api("POST", "/api/presets/save", { name: name }).then(function (data) {
         State.presets = data.presets;
-        State.reference = data.reference;
+        State.references[0] = data.reference;
         ShowError("#preset-err", "");
         RenderRail();
       }).catch(function (e) { ShowError("#preset-err", e.message); });
@@ -510,7 +549,7 @@
       name = name.trim();
       Api("POST", "/api/voicegen/" + VoiceGen.jobId + "/accept", { name: name }).then(function (data) {
         State.presets = data.presets;
-        State.reference = data.reference;
+        State.references[0] = data.reference;
         VoiceGen.accepted = name;
         var link = $("#vg-download");
         link.href = "/api/presets/" + encodeURIComponent(name) + "/download";

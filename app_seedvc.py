@@ -38,7 +38,7 @@ def Main(argv: list[str] | None = None) -> int:
     ap.add_argument("--headless-test", type=float, default=0.0, metavar="SECONDS",
                     help="run the live pipeline for SECONDS, print telemetry as JSON, then exit")
     ap.add_argument("--input-device", default=None)
-    ap.add_argument("--reference", default=None, metavar="WAV", help="load this clip into reference slot 0 (same as dropping it on the Neutral slot)")
+    ap.add_argument("--reference", default=None, metavar="WAV", help="load this clip into reference slot 0 (same as dropping it on slot 1)")
     ap.add_argument("--report", default=None, help="write the telemetry JSON of a headless test to this path")
     args = ap.parse_args(argv)
     _ConfigureLogging()
@@ -78,7 +78,7 @@ def Main(argv: list[str] | None = None) -> int:
             while True:
                 time.sleep(1.0)
         import webview
-        webview.create_window("Nekoizer", url, width=1100, height=820, background_color="#FFF4F8")
+        webview.create_window("Nekoizer", url, width=1400, height=880, background_color="#0f1115")
         webview.start()
         return 0
     except KeyboardInterrupt:

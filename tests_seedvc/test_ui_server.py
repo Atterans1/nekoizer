@@ -32,6 +32,8 @@ CONTRACT_ROUTES = {
     ("/api/preset", "POST"),
     ("/api/manual_slot", "POST"),
     ("/api/devices", "GET"),
+    ("/api/start", "POST"),
+    ("/api/stop", "POST"),
     ("/api/slot/{idx}", "POST"),
     ("/api/slot/{idx}", "DELETE"),
     ("/api/slot/{idx}/url", "POST"),
@@ -123,7 +125,7 @@ class UiServerTests(unittest.TestCase):
         slot = r.json()["slot"]
         self.assertTrue(slot["loaded"])
         self.assertEqual(slot["seconds"], 1.5)
-        self.assertEqual(slot["name"], "Neutral")
+        self.assertEqual(slot["name"], "slot 1")
         self.assertEqual(self.fake.calls[-1], ("SetSlotFromWav", 0, 24000, "float32", 1, 16000))
 
     def test_stereo_upload_is_downmixed_to_mono_at_its_own_rate(self):
@@ -245,10 +247,10 @@ class UiServerTests(unittest.TestCase):
         self.assertEqual(self.client.post("/api/preset", json={"name": "Nope"}).status_code, 404)
 
     def test_devices_lists_fake_inputs(self):
-        r = self.client.get("/api/devices")
-        self.assertEqual(r.json(), {"devices": [{"id": 0, "name": "FAKE microphone", "hostapi": "FAKE",
-                                                 "default_samplerate": 48000.0, "max_input_channels": 1}]})
-
+        body = self.client.get("/api/devices").json()
+        self.assertEqual(body["devices"], [{"id": 0, "name": "FAKE microphone", "hostapi": "FAKE",
+                                            "default_samplerate": 48000.0, "max_input_channels": 1}])
+        self.assertEqual(body["inputs"], body["devices"])
     def test_websocket_pushes_about_20_hz_with_telemetry_keys(self):
         with self.client.websocket_connect("/ws", headers=LOOPBACK) as ws:
             first = ws.receive_json()

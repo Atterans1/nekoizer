@@ -23,7 +23,7 @@ class Pipeline:
     """Live pipeline. Construct, Start(), then drive it from the UI; Stop() releases every device and thread."""
 
     def __init__(self, assets_dir: str | Path, params: P.ParamStore | None = None, input_device: str | None = None,
-                 output_device: str = P.CABLE_OUTPUT_NAME, monitor_device: str | None = None, device: str = "cuda",
+                 output_device: str | None = None, monitor_device: str | None = None, device: str = "cuda",
                  engines: tuple | None = None):
         """engines: optional (clip engine, RVC engine) built by the caller; None builds the real ones. Nothing is loaded here."""
         from engine.engine_host import EngineHost
@@ -51,10 +51,12 @@ class Pipeline:
                        "inference_s_sum": 0.0, "load": None}
         self._record_slot: int | None = None
 
-    def Start(self) -> dict:
+    def Start(self, input_id: int | None = None, output_id: int | None = None) -> dict:
         with self._lock:
             if self._running:
                 return {"already_running": True}
+            if input_id is not None or output_id is not None:
+                self._ApplyDeviceIds(input_id, output_id)
             from audio.input_chain import InputChain
             from audio.output_chain import OutputChain
             self._stats["load"] = self._host.LoadClip()
@@ -69,6 +71,27 @@ class Pipeline:
             self.janitor.Add(self._StopWorker)
             self._running = True
             return {"started": True, "load": self._stats["load"]}
+
+    def _ApplyDeviceIds(self, input_id: int | None, output_id: int | None) -> None:
+        """Translate the UI's PortAudio device ids into the name filters the chains accept.
+
+        An id that no longer exists raises ValueError with the live device list; it never
+        silently falls back, because the UI showed the user exactly that device."""
+        import sounddevice as sd
+
+        def name_of(dev_id: int, channels_min: int) -> str:
+            try:
+                info = sd.query_devices(dev_id)
+            except Exception as exc:
+                raise ValueError(f"device id {dev_id} does not exist: {exc}") from exc
+            if info["max_input_channels"] < channels_min:
+                raise ValueError(f"device id {dev_id} ({info['name']!r}) is not usable in that direction")
+            return info["name"]
+
+        if input_id is not None:
+            self._input_device = name_of(input_id, 1)
+        if output_id is not None:
+            self._output_device = name_of(output_id, 0)
 
     def Stop(self) -> None:
         with self._lock:
@@ -142,6 +165,19 @@ class Pipeline:
         return probe.ListDevices()
 
     # ---- telemetry
+    def ListOutputDevices(self) -> list[dict]:
+        import sounddevice as sd
+        wasapis = [i for i, h in enumerate(sd.query_hostapis()) if "WASAPI" in h["name"]]
+        if not wasapis:
+            return []
+        host = sd.query_hostapis(wasapis[0])["name"]
+        default = sd.query_hostapis(wasapis[0])["default_output_device"]
+        rows = [{"id": i, "name": d["name"], "hostapi": host, "default_samplerate": d["default_samplerate"],
+                 "max_output_channels": d["max_output_channels"], "is_default": i == default}
+                for i, d in enumerate(sd.query_devices()) if d["hostapi"] == wasapis[0] and d["max_output_channels"] > 0]
+        rows.sort(key=lambda r: (not r["is_default"], r["name"].lower()))
+        return rows
+
     def Telemetry(self) -> dict:
         s = dict(self._stats)
         blocks = max(1, s["active_blocks"])

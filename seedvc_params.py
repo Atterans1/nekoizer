@@ -9,7 +9,7 @@ import threading
 from typing import Any, Callable
 
 # ---------------------------------------------------------------- PUBLIC
-SLOT_NAMES = ("Neutral", "Hyped/Laughing", "Whisper/Soft", "Angry/Intense", "Sad/Low", "Excited/Fast", "Calm/Warm", "Serious/Deadpan", "Playful/Teasing", "Tense/Fearful")
+SLOT_NAMES = tuple("slot " + str(i + 1) for i in range(10))  # generic names: one clip/model per slot, no emotion mapping
 
 # Tunable controls. type: int | float | bool | enum. "values" is for enum.
 ParamSpec: dict[str, dict[str, Any]] = {

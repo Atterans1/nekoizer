@@ -125,6 +125,7 @@ class InputChain:
         self._raw_requested = False
         self._stream_latency_ms = None
         self._attempts = {}
+        self._fell_back = False
         self._comp = None
         self._cb_frames = 0
         self._pa_overruns = self._ring_overruns = self._out_overruns = 0
@@ -142,18 +143,33 @@ class InputChain:
     def ListDevices(self) -> list[dict]:
         wasapi = self._WasapiIndex()
         host = sd.query_hostapis(wasapi)["name"]
+        default = sd.query_hostapis(wasapi)["default_input_device"]
         return [{"id": i, "name": d["name"], "hostapi": host, "default_samplerate": d["default_samplerate"],
-                 "max_input_channels": d["max_input_channels"]}
+                 "max_input_channels": d["max_input_channels"], "is_default": i == default}
                 for i, d in enumerate(sd.query_devices()) if d["hostapi"] == wasapi and d["max_input_channels"] > 0]
 
     def Start(self) -> None:
         with self._life:
             if self._running:
                 return
-            dev = self._ResolveDevice()
-            info = sd.query_devices(dev)
-            native_sr, native_ch = int(round(info["default_samplerate"])), int(info["max_input_channels"])
-            stream, mode, rate, ch, raw = self._OpenStream(dev, native_sr, native_ch)
+            candidates, preferred = self._CandidateDevices()
+            last_err: Exception | None = None
+            stream = None
+            info = None
+            mode = rate = ch = raw = None
+            dev = None
+            for dev in candidates:
+                try:
+                    info = sd.query_devices(dev)
+                    native_sr, native_ch = int(round(info["default_samplerate"])), int(info["max_input_channels"])
+                    stream, mode, rate, ch, raw = self._OpenStream(dev, native_sr, native_ch)
+                    break
+                except Exception as exc:  # a dead device must never kill the app: try the next one
+                    last_err = exc
+                    stream = None
+            if stream is None:
+                raise RuntimeError(f"could not open any WASAPI input device (tried {candidates}): {last_err}")
+            self._fell_back = bool(preferred is not None and dev != preferred)
             self._stream, self._mode, self._rate, self._channels = stream, mode, rate, ch
             self._device, self._device_id, self._raw_requested = info["name"], dev, raw
             self._bypassed = True if mode == "exclusive" else None   # shared: PortAudio does not report whether Windows honoured RAW
@@ -281,6 +297,26 @@ class InputChain:
         if not others:
             raise RuntimeError(f"no usable WASAPI microphone; available: {list(names.values())}")
         return others[0]
+
+    def _CandidateDevices(self) -> tuple[list[int], int | None]:
+        """Device ids to try at Start, best first, and the id of the preferred device (None if unconfigured).
+
+        Order: the configured device, the WASAPI default input, then every other non-CABLE input.
+        A device that only enumerates but cannot open (Intel SST glitch, unplugged interface) is
+        skipped instead of taking the whole app down."""
+        preferred: int | None
+        try:
+            preferred = self._ResolveDevice()
+        except RuntimeError:
+            preferred = None
+        devices = self.ListDevices()
+        ids = {d["id"] for d in devices}
+        default = sd.query_hostapis(self._WasapiIndex())["default_input_device"]
+        ordered: list[int] = []
+        for dev in ([preferred, default] if preferred is not None else [default]) + [d["id"] for d in devices]:
+            if dev is not None and dev in ids and dev not in ordered and "cable" not in next(n for n in devices if n["id"] == dev)["name"].lower():
+                ordered.append(dev)
+        return ordered, preferred
 
     def _ExclusiveFormat(self, dev: int, native_sr: int, native_ch: int):
         rates = [native_sr] + [r for r in EXCLUSIVE_RATES if r != native_sr]

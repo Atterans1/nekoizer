@@ -243,19 +243,48 @@ async def GetPresets():
 
 
 @app.post("/api/reference")
-async def PostReference(file: UploadFile = File(...)):
+async def PostReference(file: UploadFile = File(...), slot: int = 0):
     filename = file.filename or ""
-    if not filename.lower().endswith(".wav"):
-        raise ApiError("reference must be a .wav file")
+    ext = filename.lower().rsplit(".", 1)[-1] if "." in filename else ""
+    if ext not in ("wav", "flac", "ogg", "mp3", "m4a"):
+        raise ApiError("reference must be a .wav, .flac, .ogg, .mp3 or .m4a file")
     data = await file.read(MaxUploadBytes + 1)
     if len(data) > MaxUploadBytes:
         raise ApiError("reference exceeds the 5 MB upload limit", 413)
-    if len(data) < 44 or data[:4] != b"RIFF" or data[8:12] != b"WAVE":
-        raise ApiError("file is not a valid RIFF/WAVE")
-    staged = ReferenceDir / "upload.tmp.wav"
-    await run_in_threadpool(_StageAndLoad, data, staged, Path(filename).stem[:40])
-    return State.Reference
+    if not 0 <= slot < len(SLOT_NAMES):
+        raise ApiError(f"slot must be 0..{len(SLOT_NAMES) - 1}")
+    staged = ReferenceDir / f"upload.tmp.{ext}"
+    await run_in_threadpool(_StageAndLoadSlot, data, staged, Path(filename).stem[:40], slot)
+    return State.Reference.get(slot)
 
+@app.post("/api/reference/url")
+async def PostReferenceUrl(body: dict = Body(...)):
+    url = str(body.get("url", "")).strip()
+    slot = int(body.get("slot", 0))
+    if not url.lower().startswith(("http://", "https://")):
+        raise ApiError("url must be an http(s) link")
+    if not 0 <= slot < len(SLOT_NAMES):
+        raise ApiError(f"slot must be 0..{len(SLOT_NAMES) - 1}")
+    import urllib.request
+    req = urllib.request.Request(url, headers={"User-Agent": "Nekoizer/1.0"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        data = resp.read(MaxUploadBytes + 1)
+    if len(data) > MaxUploadBytes:
+        raise ApiError("file exceeds the 5 MB upload limit", 413)
+    suffix = Path(url.split("?")[0]).suffix.lower().lstrip(".")
+    if suffix not in ("wav", "flac", "ogg", "mp3", "m4a", "pth", "zip", "index"):
+        raise ApiError("url must point to a .wav, .flac, .ogg, .mp3, .m4a, .pth, .zip or .index file")
+    staged = ReferenceDir / f"upload.tmp.{suffix}"
+    await run_in_threadpool(_StageAndLoadSlot, data, staged, Path(url.split("?")[0]).stem[:40], slot)
+    return State.Reference.get(slot)
+
+@app.delete("/api/reference/{slot}")
+async def DeleteReference(slot: int):
+    if not 0 <= slot < len(SLOT_NAMES):
+        raise ApiError(f"slot must be 0..{len(SLOT_NAMES) - 1}")
+    State.Reference.pop(slot, None)
+    await run_in_threadpool(State.Pipe.ClearSlot, slot)
+    return {"ok": True}
 
 @app.post("/api/presets/save")
 async def SavePreset(body: dict):
@@ -453,6 +482,36 @@ def _AcceptClip(clip: Path, name: str) -> None:
     target = PresetsDir / (name + ".wav")
     shutil.copyfile(clip, target)
     _LoadReferenceFile(target, name)
+
+
+def _ReadWav(path: Path) -> tuple:
+    import soundfile as sf
+    wav, sr = sf.read(path, dtype="float32", always_2d=False)
+    return wav, sr
+
+
+def ReadAnyAudio(path: Path) -> tuple:
+    data = path.read_bytes()
+    if data[:4] == b"RIFF" and data[8:12] == b"WAVE":
+        return _ReadWav(path)
+    import soundfile as sf
+    try:
+        wav, sr = sf.read(path, dtype="float32", always_2d=False)
+    except Exception as exc:
+        raise ValueError(f"cannot decode {path.suffix}: {exc}")
+    return wav, sr
+
+
+def _StageAndLoadSlot(data: bytes, staged: Path, display_name: str, slot: int) -> None:
+    with State.ReferenceLock:
+        staged.write_bytes(data)
+        try:
+            wav, sr = ReadAnyAudio(staged)
+        except ValueError as exc:
+            staged.unlink(missing_ok=True)
+            raise ApiError(str(exc), 400)
+        info = State.Pipe.SetSlotFromWav(slot, wav.mean(axis=1) if wav.ndim > 1 else wav, sr)
+        State.Reference[slot] = {"name": display_name, **info}
 
 
 def _StageAndLoad(data: bytes, staged: Path, display_name: str) -> None:

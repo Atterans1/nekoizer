@@ -1,0 +1,1 @@
+kept: this script is the HiFT vocoder smoke test (SMOKE_TEST_PASS on cpu, checkpoint hift.pt loaded, output [1,12800] finite)

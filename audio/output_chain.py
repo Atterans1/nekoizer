@@ -80,6 +80,7 @@ class OutputChain:
         self._running = self._registered = False
         self._device, self._sr, self._ch = None, 0, 0
         self._mon_device, self._mon_sr, self._mon_ch, self._mon_error = None, 0, 0, None
+        self._output_fallback: str | None = None
         self._ResetCounters()
         params.Subscribe(self._OnParam)
 
@@ -87,7 +88,14 @@ class OutputChain:
         with self._lifecycle:
             if self._running:
                 return
-            dev = ResolveWasapiOutput(self._device_name, forbid=MAIN_DEVICE_FORBIDDEN)
+            try:
+                dev = ResolveWasapiOutput(self._device_name, forbid=MAIN_DEVICE_FORBIDDEN)
+            except RuntimeError as exc:
+                if self._device_name is None:
+                    raise
+                # a configured output that vanished (unplug, driver reset) must not kill the app
+                dev = ResolveWasapiOutput(None)
+                self._output_fallback = f"{self._device_name!r} unavailable ({exc}); using {dev['name']!r}"
             self._device, self._sr, self._ch = dev["name"], dev["samplerate"], dev["channels"]
             self._ring = _Fifo(int(RING_SECONDS * self._sr), self._ch)
             self._resampler = StreamResampler(P.MODEL_SR, self._sr)

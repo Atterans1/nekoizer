@@ -31,6 +31,7 @@ TIMEOUT_SECONDS = 30
 RETRY_BACKOFF_SECONDS = 2  # the wait doubles per attempt, capped at 30 s
 READ_BYTES = 1 << 20
 OUT_BYTES = 16 << 20  # largest inflated piece held in memory at once
+CHUNK_DEADLINE_SECONDS = 300  # R: one 8 MB chunk must finish within five minutes; a trickling connection raises and is retried
 MANIFEST_NAME = "torch_lib_manifest.json"
 MANIFEST_FORMAT = 1
 VERIFIED_NAME = "verified.json"
@@ -71,11 +72,15 @@ class HttpRangeFile(io.RawIOBase):
             return 0
         start = self._pos
         request = urllib.request.Request(self._url, headers={"Range": f"bytes={start}-{start + want - 1}"})
+        started = time.monotonic()  # R: a trickling server feeds every socket op inside the timeout but never finishes the read
         with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
             if response.status != 206:
                 raise OSError(f"the server ignored the byte range (HTTP {response.status})")
             _CheckContentRange(response.headers.get("Content-Range"), start, self._size)
             data = response.read()
+        elapsed = time.monotonic() - started
+        if elapsed > CHUNK_DEADLINE_SECONDS:
+            raise OSError(f"the range read took {elapsed:.0f} s, beyond the {CHUNK_DEADLINE_SECONDS} s deadline")
         if len(data) != want:
             raise OSError("a byte range arrived short")
         buffer[:want] = data
